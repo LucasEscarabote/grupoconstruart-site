@@ -103,6 +103,16 @@
 
     <style>
       body {
+      font-family: var(--font-inter, "Inter", sans-serif);
+        margin: 0;
+      }
+      /* Adicione o código do WhatsApp aqui */
+      .whatsapp-flutuante {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+      }
         font-family: var(--font-inter, "Inter", sans-serif);
         margin: 0;
       }
@@ -434,8 +444,8 @@
             <a
               href="#projects"
               class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Projetos"
-              >Projetos</a
+              aria-label="Ir para a seção Nossos Valores"
+              >Nossos Valores</a
             >
           </li>
           <li>
@@ -508,7 +518,7 @@
               href="#projects"
               class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Projetos"
-              >Projetos</a
+              >Nossos Valores</a
             >
           </li>
           <li>
@@ -613,10 +623,11 @@
             <p class="font-sans text-lg md:text-xl font-light mb-8 animate-fade-in-up delay-400">
                 Transformamos ideias em estruturas duradouras com paixão e precisão.
             </p>
-            <a href="#projects" class="inline-block">
-                <button class="bg-brand-blue-royal text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-brand-blue-dark transition-colors duration-300" aria-label="Conheça os Nossos Projetos">
-                    Conheça os Nossos Projetos
-                </button>
+         <a href="https://api.whatsapp.com/send?phone=5511994127747" class="inline-block" target="_blank">
+  <button class="bg-brand-blue-royal text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-brand-blue-dark transition-colors duration-300" aria-label="Fale com um Especialista Agora">
+    Fale com um Especialista Agora
+  </button>
+</a>
         </a>
           </a>
         </div>
@@ -851,7 +862,7 @@
                   href="#projects"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
                   aria-label="Ir para a seção Projetos"
-                  >Projetos</a
+                  >Nossos Valores</a
                 >
               </li>
               <li>
@@ -1114,5 +1125,8 @@
         }
       });
     </script>
+    <a href="https://api.whatsapp.com/send?phone=5511994127747" class="whatsapp-flutuante" target="_blank">
+         <img src="./images/whatsapp.png" alt="WhatsApp" width="50" height="50" />
+       </a>
   </body>
 </html>
