@@ -366,10 +366,22 @@
           <li>
             <a
               href="#"
+              id="increase-font"
               class="hover:text-white transition-colors duration-300"
-              aria-label="Ajustar Configurações de Acessibilidade"
-              >Acessibilidade</a
+              aria-label="Aumentar Fonte"
             >
+              A+
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="decrease-font"
+              class="hover:text-white transition-colors duration-300"
+              aria-label="Diminuir Fonte"
+            >
+              A-
+            </a>
           </li>
         </ul>
         <div class="header-lang-selector ml-4">
@@ -1128,5 +1140,60 @@
     <a href="https://api.whatsapp.com/send?phone=5511994127747" class="whatsapp-flutuante" target="_blank">
          <img src="./images/whatsapp.png" alt="WhatsApp" width="50" height="50" />
        </a>
+       <script>
+  // Função para aumentar o tamanho da fonte
+  function aumentarFonte() {
+    var elementos = document.querySelectorAll('body *'); // Seleciona todos os elementos no corpo da página
+    elementos.forEach(function(elemento) {
+      var tamanhoAtual = window.getComputedStyle(elemento, null).getPropertyValue('font-size');
+      var novoTamanho = parseFloat(tamanhoAtual) * 1.1; // Aumenta 10%
+      elemento.style.fontSize = novoTamanho + 'px';
+    });
+  }
+
+  // Atribui a função ao clique do botão de acessibilidade
+  var linkAcessibilidade = document.querySelector('a[href="#"][aria-label="Ajustar Configurações de Acessibilidade"]');
+  if (linkAcessibilidade) {
+    linkAcessibilidade.addEventListener('click', function(event) {
+      event.preventDefault(); // Impede o link de navegar
+      aumentarFonte();
+    });
+  }
+</script>
+ <script>
+      // Seu código JavaScript já existente
+      
+      // Código de Acessibilidade
+      document.addEventListener("DOMContentLoaded", function() {
+          const increaseBtn = document.getElementById('increase-font');
+          const decreaseBtn = document.getElementById('decrease-font');
+          
+          if (increaseBtn && decreaseBtn) {
+              increaseBtn.addEventListener('click', function(event) {
+                  event.preventDefault();
+                  ajustarFonte(1.1); // Aumenta em 10%
+              });
+              
+              decreaseBtn.addEventListener('click', function(event) {
+                  event.preventDefault();
+                  ajustarFonte(0.9); // Diminui em 10%
+              });
+          }
+          
+          function ajustarFonte(fator) {
+              const elementos = document.querySelectorAll('body *');
+              elementos.forEach(function(elemento) {
+                  const tamanhoAtual = window.getComputedStyle(elemento, null).getPropertyValue('font-size');
+                  const tamanhoEmPx = parseFloat(tamanhoAtual);
+                  const novoTamanho = tamanhoEmPx * fator;
+                  
+                  // Evita que a fonte fique muito pequena
+                  if (novoTamanho > 10) { 
+                      elemento.style.fontSize = novoTamanho + 'px';
+                  }
+              });
+          }
+      });
+    </script>
   </body>
 </html>
