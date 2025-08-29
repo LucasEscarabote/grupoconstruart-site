@@ -222,7 +222,7 @@
           "item1 item4 item5"
           "item2 item6 item5";
         position: relative;
-        margin-top: -120px; /* mantém a sobreposição na seção de cima */
+        margin-top: -120px;
         z-index: 10;
       }
 
@@ -273,17 +273,27 @@
       @media (min-width:1280px){ .service-grid-comexport{ grid-auto-rows: 210px; } } */
       .service-grid-construart {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        /* gap: 16px; */
+        grid-template-columns: repeat(
+          1,
+          minmax(0, 1fr)
+        ); /* Default to 1 column */
+        gap: 1.5rem; /* Gap between cards */
         align-items: center;
         position: relative;
         z-index: 10;
       }
 
-      @media (max-width: 768px) {
+      @media (min-width: 768px) {
+        /* Medium screens and up */
         .service-grid-construart {
-          grid-template-columns: 1fr;
-          margin-top: 0;
+          grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns */
+        }
+      }
+
+      @media (min-width: 1024px) {
+        /* Large screens and up */
+        .service-grid-construart {
+          grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
         }
       }
       /* Card entrance animation */
@@ -610,6 +620,7 @@
           </li>
         </ul>
       </div>
+
       <div
         class="absolute bottom-0 left-0 w-full h-[1px] bg-brand-blue-royal opacity-70"
       ></div>
@@ -627,7 +638,9 @@
             <div class="cta-text-area text-center md:text-left max-w-2xl">
               <p
                 class="cta-pre-title text-2xl md:text-3xl font-bold font-serif"
-              ></p>
+              >
+                Construart
+              </p>
               <h2
                 class="text-4xl md:text-6xl font-serif leading-tight mt-4 mb-6"
               >
@@ -642,20 +655,18 @@
               class="cta-form-area w-full max-w-lg bg-white p-8 rounded-lg shadow-xl"
             >
               <form
-                action="https://formsubmit.co/Projetosconstruart@outlook.com"
+                action="https://formsubmit.co/lucasdaltue@gmail.com"
                 method="POST"
                 class="contact-form space-y-6"
               >
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://sua-url-de-agradecimento.com/obrigado.html"
-                />
+                <!-- Removido o campo _next para usar o padrão do FormSubmit.co e evitar erro de página não encontrada -->
                 <input
                   type="hidden"
                   name="_subject"
                   value="Nova Mensagem do Site da Construart!"
                 />
+                <!-- Desativado o CAPTCHA conforme solicitado -->
+                <input type="hidden" name="_captcha" value="false" />
                 <div class="form-group">
                   <input
                     type="text"
@@ -719,6 +730,7 @@
               Construindo legados com precisão e excelência.
             </p>
           </div>
+
           <div>
             <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
               Navegação
@@ -752,7 +764,7 @@
                 <a
                   href="valores.html"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
-                  aria-label="Ir para a seção Projetos"
+                  aria-label="Ir para a seção Nossos Valores"
                   >Nossos Valores</a
                 >
               </li>
@@ -766,6 +778,7 @@
               </li>
             </ul>
           </div>
+
           <div>
             <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
               Contato
@@ -792,6 +805,7 @@
               <li>Endereço: Rua Major Quedinho, 111</li>
             </ul>
           </div>
+
           <div>
             <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
               Siga-nos
