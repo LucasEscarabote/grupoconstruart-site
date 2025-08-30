@@ -60,13 +60,13 @@
               }
               // Try common APIs
               if(typeof lucide.replace === 'function'){
-                lucide.replace({ stroke: '#ffffff' });
+                lucide.replace(); // Removido o stroke para herdar a cor via CSS
                 console.info('[lucide] initialized with replace()');
                 return true;
               }
               if(typeof lucide.createIcons === 'function'){
                 // some versions use createIcons
-                lucide.createIcons({ stroke: '#ffffff' });
+                lucide.createIcons(); // Removido o stroke para herdar a cor via CSS
                 console.info('[lucide] initialized with createIcons()');
                 return true;
               }
@@ -246,19 +246,6 @@
 }
     </style>
     <style>
-      /* ensure lucide svgs inherit white color */
-      i[data-lucide] svg, i[data-lucide] {
-        color: #ffffff;
-        stroke: #ffffff;
-      }
-    </style>
-    <style>
-      /* ensure lucide svgs inherit white color */
-      i[data-lucide] svg, i[data-lucide] {
-        color: #ffffff;
-        stroke: #ffffff;
-      }
-
  @keyframes drawBorder {
     0% {
         border-width: 0px;
@@ -587,6 +574,40 @@
         </div>
       </section>
     </main>
+    
+    <section id="why-us" class="bg-brand-blue-dark py-16 md:py-24 text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 animate-fade-in-up">
+          Por que a Construart?
+        </h2>
+        <p class="text-lg md:text-xl font-sans mb-12 animate-fade-in-up delay-200">
+          Dados concretos e experiência consolidada que provam nosso compromisso com a excelência.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-400">
+            <i data-lucide="compass" class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"></i>
+            <h3 class="text-2xl font-serif font-bold text-brand-blue-dark mb-2">Foco em Alto Padrão</h3>
+            <p class="text-brand-blue-dark/70">
+              Especializados em projetos de médio e alto padrão, transformamos ideias em realidade com acabamento superior.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-600">
+            <i data-lucide="building" class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"></i>
+            <h3 class="text-2xl font-serif font-bold text-brand-blue-dark mb-2">Experiência Comprovada</h3>
+            <p class="text-brand-blue-dark/70">
+              Com mais de 15.000m² em projetos executados, entregamos qualidade e segurança em grande escala.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-800">
+            <i data-lucide="hammer" class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"></i>
+            <h3 class="text-2xl font-serif font-bold text-brand-blue-dark mb-2">Gestão Completa de Obras</h3>
+            <p class="text-brand-blue-dark/70">
+              Nosso serviço de gerenciamento e execução de obras garante um processo transparente e sem imprevistos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer
       id="contact"
@@ -740,7 +761,7 @@
         function tryReplace() {
           try {
             if (window.lucide && typeof lucide.replace === 'function') {
-              lucide.replace({ stroke: '#ffffff', width: 24, height: 24 });
+              lucide.replace(); // Removido o stroke para herdar a cor via CSS
               console.info('[lucide] replace() called');
               return true;
             }
@@ -771,15 +792,15 @@
           home:
             '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M7 21v-7h10v7"/></svg>',
           building:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h.01M8 11h.01M8 15h.01M12 7h.01M12 11h.01M12 15h.01M16 7h.01M16 11h.01M16 15h.01"/></svg>',
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h.01M8 11h.01M8 15h.01M12 7h.01M12 11h.01M12 15h.01M16 7h.01M16 11h.01M16 15h.01"/></svg>',
           hammer:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9 9-4 1 1-4 9-9"/><path d="M7 13L3 21"/></svg>',
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9 9-4 1 1-4 9-9"/><path d="M7 13L3 21"/></svg>',
           compass:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-4 2-2 4 4-2z"/></svg>',
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-4 2-2 4 4-2z"/></svg>',
           'file-text':
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>',
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>',
           hourglass:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 6h8v2a4 4 0 0 1-2 3.3L12 13l-2 1.7A4 4 0 0 1 8 18v-2"/></svg>'
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 6h8v2a4 4 0 0 1-2 3.3L12 13l-2 1.7A4 4 0 0 1 8 18v-2"/></svg>'
         };
 
         document.querySelectorAll('i[data-lucide]').forEach((node) => {
