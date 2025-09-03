@@ -60,13 +60,13 @@
             }
             // Try common APIs
             if (typeof lucide.replace === "function") {
-              lucide.replace({ stroke: "#ffffff" });
+              lucide.replace(); // Removido o stroke para herdar a cor via CSS
               console.info("[lucide] initialized with replace()");
               return true;
             }
             if (typeof lucide.createIcons === "function") {
               // some versions use createIcons
-              lucide.createIcons({ stroke: "#ffffff" });
+              lucide.createIcons(); // Removido o stroke para herdar a cor via CSS
               console.info("[lucide] initialized with createIcons()");
               return true;
             }
@@ -110,222 +110,151 @@
     />
 
     <style>
-            body {
-            font-family: var(--font-inter, "Inter", sans-serif);
-              margin: 0;
-            }
-            /* Adicione o código do WhatsApp aqui */
-            .whatsapp-flutuante {
-              position: fixed;
-              bottom: 20px;
-              right: 20px;
-              z-index: 999;
-            }
-              font-family: var(--font-inter, "Inter", sans-serif);
-              margin: 0;
-            }
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-              font-family: var(--font-playfair-display, "Playfair Display", serif);
-            }
-            /* Animação para elementos da Hero Section */
-            @keyframes fadeInOut {
-              0% {
-                opacity: 0;
-                transform: translateY(20px);
-              }
-              100% {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            .animate-fade-in-up {
-              animation: fadeInOut 0.8s ease-out forwards;
-            }
-            .delay-200 {
-              animation-delay: 0.2s;
-            }
-            .delay-400 {
-              animation-delay: 0.4s;
-            }
-            /* --- Estilos para o cabeçalho fixo no topo da página --- */
-            .scrolled-header {
-              background-color: white;
-              transition: background-color 0.3s ease;
-              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .scrolled-header .header-top-text,
-            .scrolled-header .header-bottom-nav a {
-              color: #222e5a !important; /* Cor do texto e links da navegação para o modo rolado */
-              transition: color 0.3s ease;
-            }
-
-            .scrolled-header .header-top-text a:hover {
-              color: #203c88 !important; /* Cor dos links no hover */
-            }
-
-            .scrolled-header .header-lang-selector button {
-              color: black !important;
-              background-color: transparent !important;
-              border-color: #203c88 !important;
-            }
-
-            .scrolled-header .header-lang-selector button:hover {
-              background-color: #203c88 !important;
-              color: white !important;
-            }
-
-            .scrolled-header .header-lang-selector button.selected {
-              background-color: #203c88 !important;
-              color: white !important;
-            }
-            @keyframes drawBorder {
-          0% {
-              border-width: 0px;
-              opacity: 0;
-          }
-          100% {
-              border-width: 2px;
-              opacity: 1;
-          }
+      body {
+        font-family: var(--font-inter, "Inter", sans-serif);
+        margin: 0;
       }
-      .animated-border {
-          animation: drawBorder 1s ease-out forwards 0.5s;
-          animation-fill-mode: forwards;
+      /* Adicione o código do WhatsApp aqui */
+      .whatsapp-flutuante {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
       }
-      .animate-svg-path {
-          stroke-dasharray: 400; /* Um valor alto para esconder toda a linha inicialmente */
-          stroke-dashoffset: 400;
-          animation: drawPath 2s ease-in-out forwards 0.5s;
+      font-family: var(--font-inter, "Inter", sans-serif);
+      margin: 0;
       }
-
-      @keyframes drawPath {
-          to {
-              stroke-dashoffset: 0; /* Animação para 0 revela a linha */
-          }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-playfair-display, "Playfair Display", serif);
       }
-      @media (max-width: 767px) {
-          .relative.w-full.max-w-md {
-              margin-top: 50px; /* Altere este valor para ajustar a posição */
-          }
-      }
-      .service-grid-comexport{
-        display:grid;
-        grid-template-columns: repeat(3, minmax(0,1fr));
-        /* altura base de cada “fileira”; quem span 2 fica com o dobro */
-        grid-auto-rows: 170px;
-        gap: 1.5rem;
-        /* layout com os dois blocos verticais (esq e dir) e degraus no meio */
-        grid-template-areas:
-          "item1 .     item3"
-          "item1 item4 item5"
-          "item2 item6 item5";
-        position: relative;
-        margin-top: -120px;   /* mantém a sobreposição na seção de cima */
-        z-index: 10;
-      }
-
-      /* cartas ocupam 100% da célula da grid (para “esticar” nos spans) */
-      .service-grid-comexport > div{
-        height: 100%;
-        box-shadow: 0 4px 15px rgba(0,0,0,.2);
-      }
-
-      /* áreas nomeadas */
-      .item1{ grid-area:item1; } /* Integração Logística (alto – 2 linhas) */
-      .item2{ grid-area:item2; } /* Otimização Fiscal (baixo-esq) */
-      .item3{ grid-area:item3; } /* Simplificação Operacional (topo-dir) */
-      .item4{ grid-area:item4; } /* Tecnologia (meio-coluna) */
-      .item5{ grid-area:item5; } /* Integridade & Compliance (alto – 2 linhas) */
-      .item6{ grid-area:item6; } /* Soluções Financeiras (baixo-meio) */
-
-      /* responsivo: sem sobreposição e em 1 coluna no mobile */
-      @media (max-width: 768px){
-        .service-grid-comexport{
-          grid-template-columns: 1fr;
-          grid-auto-rows: auto;
-          grid-template-areas:
-            "item1"
-            "item3"
-            "item4"
-            "item2"
-            "item6"
-            "item5";
-          margin-top: 0;
-        }
-      }
-
-      /* ajuste fino da altura base em telas maiores (opcional) */
-      /* @media (min-width:1024px){ .service-grid-comexport{ grid-auto-rows: 190px; } }
-      @media (min-width:1280px){ .service-grid-comexport{ grid-auto-rows: 210px; } } */
-      .service-grid-construart {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        /* gap: 16px; */
-        align-items: center;
-        position: relative;
-        z-index: 10;
-      }
-
-      @media (max-width: 768px) {
-        .service-grid-construart {
-          grid-template-columns: 1fr;
-          margin-top: 0;
-        }
-      }
-      /* Card entrance animation */
-      @keyframes cardFadeUp {
-        from {
+      /* Animação para elementos da Hero Section */
+      @keyframes fadeInOut {
+        0% {
           opacity: 0;
-          transform: translateY(28px);
+          transform: translateY(20px);
         }
-        to {
+        100% {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      .card-animate {
-        opacity: 0;
-        transform: translateY(28px);
-        will-change: opacity, transform;
-        transition: opacity 480ms cubic-bezier(.2,.9,.2,1), transform 480ms cubic-bezier(.2,.9,.2,1);
+      .animate-fade-in-up {
+        animation: fadeInOut 0.8s ease-out forwards;
       }
-      .card-animate.visible {
-        opacity: 1;
-        transform: translateY(0);
-        /* small extra pop using keyframes for a crisper effect */
-        animation: cardFadeUp 520ms cubic-bezier(.2,.9,.2,1) both;
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+      /* --- Estilos para o cabeçalho fixo no topo da página --- */
+      .scrolled-header {
+        background-color: white;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
-      .card-inner {
+      .scrolled-header .header-top-text,
+      .scrolled-header .header-bottom-nav a {
+        color: #222e5a !important; /* Cor do texto e links da navegação para o modo rolado */
+        transition: color 0.3s ease;
+      }
+
+      .scrolled-header .header-top-text a:hover {
+        color: #203c88 !important; /* Cor dos links no hover */
+      }
+
+      .scrolled-header .header-lang-selector button {
+        color: black !important;
+        background-color: transparent !important;
+        border-color: #203c88 !important;
+      }
+
+      .scrolled-header .header-lang-selector button:hover {
+        background-color: #203c88 !important;
+        color: white !important;
+      }
+
+      .scrolled-header .header-lang-selector button.selected {
+        background-color: #203c88 !important;
+        color: white !important;
+      }
+      @keyframes drawBorder {
+        0% {
+          border-width: 0px;
+          opacity: 0;
+        }
+        100% {
+          border-width: 2px;
+          opacity: 1;
+        }
+      }
+      .animated-border {
+        animation: drawBorder 1s ease-out forwards 0.5s;
+        animation-fill-mode: forwards;
+      }
+      .animate-svg-path {
+        stroke-dasharray: 400; /* Um valor alto para esconder toda a linha inicialmente */
+        stroke-dashoffset: 400;
+        animation: drawPath 2s ease-in-out forwards 0.5s;
+      }
+      @keyframes drawPath {
+        to {
+          stroke-dashoffset: 0; /* Animação para 0 revela a linha */
+        }
+      }
+      @media (max-width: 767px) {
+        .relative.w-full.max-w-md {
+          margin-top: 50px; /* Altere este valor para ajustar a posição */
+        }
+      }
+      .service-grid-comexport {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 170px;
+        gap: 1.5rem;
+        grid-template-areas: "item1 . item3" "item1 item4 item5" "item2 item6 item5";
+        position: relative;
+        margin-top: -120px;
+        z-index: 10;
+      }
+      .service-grid-comexport > div {
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .item1 {
+        grid-area: item1;
+      }
+      .item2 {
+        grid-area: item2;
+      }
+      .item3 {
+        grid-area: item3;
+      }
+      .item4 {
+        grid-area: item4;
+      }
+      .item5 {
+        grid-area: item5;
+      }
+      .item6 {
+        grid-area: item6;
+      }
+      @media (max-width: 768px) {
+        .service-grid-comexport {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          grid-template-areas: "item1" "item3" "item4" "item2" "item6" "item5";
+          margin-top: 0;
+        }
       }
     </style>
     <style>
-      /* ensure lucide svgs inherit white color */
-      i[data-lucide] svg,
-      i[data-lucide] {
-        color: #ffffff;
-        stroke: #ffffff;
-      }
-    </style>
-    <style>
-      /* ensure lucide svgs inherit white color */
-      i[data-lucide] svg,
-      i[data-lucide] {
-        color: #ffffff;
-        stroke: #ffffff;
-      }
-
       @keyframes drawBorder {
         0% {
           border-width: 0px;
@@ -347,10 +276,30 @@
         border-color: #222e5a; /* Cor da borda com a sua cor de marca */
       }
     </style>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGXL7WJ2");
+    </script>
   </head>
-  <body class="bg-white">
+  <body class="bg-black">
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WGXL7WJ2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <header
-      class="fixed top-0 left-0 w-full z-20 text-brand-blue-dark transition-colors duration-300 scrolled-header"
+      class="fixed top-0 left-0 w-full z-20 text-brand-neutral-beige transition-colors duration-300"
     >
       <div
         class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-white/70 header-top-text"
@@ -359,7 +308,7 @@
           <li>
             <a
               href="contato.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Contato"
               >Contato</a
             >
@@ -367,7 +316,7 @@
           <li>
             <a
               href="#"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ver Oportunidades de Carreira"
               >Oportunidades</a
             >
@@ -376,7 +325,7 @@
             <a
               href="#"
               id="increase-font"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Aumentar Fonte"
             >
               A+
@@ -386,7 +335,7 @@
             <a
               href="#"
               id="decrease-font"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Diminuir Fonte"
             >
               A-
@@ -418,6 +367,8 @@
         </div>
       </div>
 
+      <div class="w-full h-[1px] bg-brand-blue-royal opacity-70"></div>
+
       <nav
         class="container mx-auto px-6 py-4 flex justify-between items-center header-bottom-nav"
       >
@@ -438,7 +389,7 @@
           <li>
             <a
               href="index.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Início"
               >Início</a
             >
@@ -446,7 +397,7 @@
           <li>
             <a
               href="sobre.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Sobre Nós"
               >Sobre Nós</a
             >
@@ -454,14 +405,15 @@
           <li>
             <a
               href="servicos.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
+              aria-label="Ir para a seção Serviços"
               >Serviços</a
             >
           </li>
           <li>
             <a
               href="valores.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Nossos Valores"
               >Nossos Valores</a
             >
@@ -469,7 +421,7 @@
           <li>
             <a
               href="contato.html"
-              class="hover:text-brand-blue-dark transition-colors duration-300"
+              class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Contato"
               >Contato</a
             >
@@ -479,7 +431,7 @@
         <div class="md:hidden">
           <button
             id="mobile-menu-button"
-            class="text-brand-blue-dark hover:text-brand-blue-royal focus:outline-none"
+            class="text-brand-neutral-beige hover:text-white focus:outline-none"
             aria-label="Abrir menu mobile"
           >
             <svg
@@ -504,13 +456,13 @@
 
       <div
         id="mobile-menu"
-        class="hidden md:hidden px-6 pb-4 bg-white bg-opacity-70"
+        class="hidden md:hidden px-6 pb-4 bg-black bg-opacity-70"
       >
         <ul class="flex flex-col space-y-4 font-serif">
           <li>
             <a
               href="index.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Início"
               >Início</a
             >
@@ -518,7 +470,7 @@
           <li>
             <a
               href="sobre.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Sobre Nós"
               >Sobre Nós</a
             >
@@ -526,7 +478,7 @@
           <li>
             <a
               href="servicos.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Serviços"
               >Serviços</a
             >
@@ -534,7 +486,7 @@
           <li>
             <a
               href="valores.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Projetos"
               >Nossos Valores</a
             >
@@ -542,7 +494,7 @@
           <li>
             <a
               href="contato.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Contato"
               >Contato</a
             >
@@ -550,7 +502,7 @@
           <li class="pt-4 mt-4 border-t border-brand-neutral-beige/10">
             <a
               href="contato.html"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Contato"
               >Contato</a
             >
@@ -558,7 +510,7 @@
           <li>
             <a
               href="#"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ver Oportunidades de Carreira"
               >Oportunidades</a
             >
@@ -566,7 +518,7 @@
           <li>
             <a
               href="#"
-              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              class="block hover:text-white transition-colors duration-300"
               aria-label="Ajustar Configurações de Acessibilidade"
               >Acessibilidade</a
             >
@@ -605,142 +557,167 @@
     </header>
 
     <main>
-      <section id="services" class="bg-brand-blue-dark text-white pt-40 pb-20">
+      <section
+        id="servicos-hero"
+        class="relative h-screen flex items-center justify-center bg-cover bg-center text-white"
+        style="background-image: url('./images/hero-servicos.jpg')"
+      >
         <div
-          class="max-w-[1280px] mx-auto py-8 px-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-        >
-          <div class="md:text-left text-center">
-            <h2 class="font-sans text-2xl md:text-3xl font-light mb-6">
-              A CONSTRUART é sinônimo de excelência em construção, com serviços
-              personalizados e inovadores para o sucesso dos seus clientes.
-            </h2>
-            <a
-              href="valores.html"
-              class="inline-block border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-brand-blue-dark transition-colors duration-300"
-            >
-              Saiba mais
-            </a>
-          </div>
-
-          <div class="service-grid-construart">
-            <div class="flex flex-col relative md:top-[-45px]">
-              <div
-                class="bg-[#125DAE] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="home" class="w-8 h-8"></i>
-                <h3 class="font-semibold text-lg">
-                  Reformas Residenciais Completas
-                </h3>
-              </div>
-              <div
-                class="bg-[#084B92] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="building" class="w-8 h-8 mb-2"></i>
-                <h3 class="font-semibold text-lg">Reformas Comerciais</h3>
-              </div>
-            </div>
-            <div class="flex flex-col relative md:bottom-[-0px]">
-              <div
-                class="bg-[#084B92] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="hammer" class="w-8 h-8 mb-2"></i>
-                <h3 class="font-semibold text-lg">Reformas Prediais</h3>
-              </div>
-              <div
-                class="bg-[#125DAE] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="compass" class="w-8 h-8 mb-2"></i>
-                <h3 class="font-semibold text-lg">
-                  Gestão de Obras e Projetos
-                </h3>
-              </div>
-            </div>
-            <div class="flex flex-col relative md:top-[-45px]">
-              <div
-                class="bg-[#125DAE] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="file-text" class="w-8 h-8 mb-2"></i>
-                <h3 class="font-semibold text-lg">
-                  Consultoria Técnica e Gerenciamento
-                </h3>
-              </div>
-              <div
-                class="bg-[#084B92] py-4 px-6 min-w-[190px] min-h-[180px] flex flex-col items-start justify-evenly text-start shadow-lg card-animate card-inner text-white"
-              >
-                <i data-lucide="hourglass" class="w-8 h-8 mb-2"></i>
-                <h3 class="font-semibold text-lg">
-                  Retrofit de Imóveis Antigos
-                </h3>
-              </div>
-            </div>
-          </div>
+          class="absolute inset-0 bg-brand-blue-royal bg-opacity-70"
+          aria-hidden="true"
+        ></div>
+        <div class="relative z-10 text-center px-6">
+          <h1
+            class="text-4xl md:text-6xl font-serif font-bold animate-fade-in-up"
+          >
+            Nossos Serviços
+          </h1>
+          <p
+            class="mt-4 text-lg md:text-xl font-sans animate-fade-in-up delay-200"
+          >
+            Soluções completas, da concepção à conclusão, com foco em qualidade
+            e eficiência.
+          </p>
         </div>
       </section>
 
-      <section
-        id="services"
-        class="py-20 md:py-32 bg-white text-brand-blue-dark"
-      >
+      <section id="detalhes-servicos" class="bg-brand-neutral-beige py-16">
         <div class="container mx-auto px-6">
-          <div class="flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-              <div class="relative w-full h-aut rounded-lg">
+          <div class="space-y-12">
+            <div
+              class="flex flex-col md:flex-row items-center bg-white p-8 rounded-lg shadow-lg"
+            >
+              <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
                 <img
-                  src="./images/nossa-reforma.png"
-                  alt="Imagem de uma reforma recém finalizada, com capacete de segurança em cima de um balcão."
-                  class="w-full h-auto object-contain"
+                  src="./images/servicos-gestao.jpg"
+                  alt="Gestão de Projetos"
+                  class="rounded-lg shadow-md w-full h-auto"
                 />
               </div>
+              <div class="md:w-1/2">
+                <h3 class="text-3xl font-serif font-bold text-brand-blue-dark">
+                  Gestão de Projetos e Obras
+                </h3>
+                <p class="mt-4 text-brand-blue-dark/80">
+                  Assumimos a responsabilidade total pela sua obra, desde o
+                  planejamento até a entrega das chaves. Nossa abordagem garante
+                  que o projeto seja concluído dentro do prazo e orçamento,
+                  superando as expectativas.
+                </p>
+                <ul class="mt-4 space-y-2 text-brand-blue-dark/70">
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Planejamento e Orçamentação
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Coordenação de Equipes e Fornecedores
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Controle de Qualidade e Cronograma
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="md:w-1/2 text-center md:text-left card-animate">
-              <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">
-                NOSSAS REFORMAS
-              </h2>
-              <p class="font-sans text-lg mb-4">
-                Oferecemos soluções completas para transformar seu espaço:
-              </p>
-              <ul class="font-sans text-lg space-y-2">
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Demolição e Construção
-                </li>
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Instalações Hidrossanitárias
-                </li>
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Pintura e Acabamento
-                </li>
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Piso e Revestimento
-                </li>
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Limpeza Pós-Obra
-                </li>
-                <li class="flex items-center">
-                  <span
-                    class="inline-block w-2 h-2 bg-brand-blue-dark mr-2"
-                  ></span>
-                  Instalações Elétricas
-                </li>
-              </ul>
-              <p class="font-sans text-lg mt-4">
-                Atuação em obras de alto padrão, com foco em processos,
-                qualidade e eficiência.
-              </p>
+
+            <div
+              class="flex flex-col md:flex-row items-center bg-white p-8 rounded-lg shadow-lg"
+            >
+              <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
+                <img
+                  src="./images/servicos-residencia.jpg"
+                  alt="Construção Residencial"
+                  class="rounded-lg shadow-md w-full h-auto"
+                />
+              </div>
+              <div class="md:w-1/2">
+                <h3 class="text-3xl font-serif font-bold text-brand-blue-dark">
+                  Construção Residencial
+                </h3>
+                <p class="mt-4 text-brand-blue-dark/80">
+                  Construímos a casa dos seus sonhos com atenção aos detalhes,
+                  qualidade construtiva e personalização. Da fundação ao
+                  acabamento, garantimos um lar que reflete sua personalidade.
+                </p>
+                <ul class="mt-4 space-y-2 text-brand-blue-dark/70">
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Novas Construções e Expansões
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Remodelações e Reformas
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Projetos Personalizados
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col md:flex-row items-center bg-white p-8 rounded-lg shadow-lg"
+            >
+              <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
+                <img
+                  src="./images/servicos-comercial.jpg"
+                  alt="Projetos Comerciais"
+                  class="rounded-lg shadow-md w-full h-auto"
+                />
+              </div>
+              <div class="md:w-1/2">
+                <h3 class="text-3xl font-serif font-bold text-brand-blue-dark">
+                  Projetos Comerciais
+                </h3>
+                <p class="mt-4 text-brand-blue-dark/80">
+                  Desenvolvemos e executamos projetos comerciais que unem
+                  estética, funcionalidade e durabilidade. Nossas soluções são
+                  pensadas para otimizar seu negócio.
+                </p>
+                <ul class="mt-4 space-y-2 text-brand-blue-dark/70">
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Lojas e Escritórios
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Indústrias e Galpões
+                  </li>
+                  <li>
+                    <i
+                      data-lucide="check-circle"
+                      class="inline-block w-4 h-4 text-brand-blue-royal mr-2"
+                    ></i>
+                    Edificações Especiais
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -902,7 +879,7 @@
         function tryReplace() {
           try {
             if (window.lucide && typeof lucide.replace === "function") {
-              lucide.replace({ stroke: "#ffffff", width: 24, height: 24 });
+              lucide.replace(); // Removido o stroke para herdar a cor via CSS
               console.info("[lucide] replace() called");
               return true;
             }
@@ -936,17 +913,8 @@
 
         // 3) fallback: inserir SVGs inline para os ícones usados
         const svgs = {
-          home: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M7 21v-7h10v7"/></svg>',
-          building:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h.01M8 11h.01M8 15h.01M12 7h.01M12 11h.01M12 15h.01M16 7h.01M16 11h.01M16 15h.01"/></svg>',
-          hammer:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9 9-4 1 1-4 9-9"/><path d="M7 13L3 21"/></svg>',
-          compass:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-4 2-2 4 4-2z"/></svg>',
-          "file-text":
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>',
-          hourglass:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 6h8v2a4 4 0 0 1-2 3.3L12 13l-2 1.7A4 4 0 0 1 8 18v-2"/></svg>',
+          "check-circle":
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
         };
 
         document.querySelectorAll("i[data-lucide]").forEach((node) => {
@@ -967,120 +935,6 @@
 
         console.warn("[lucide] fallback applied — inline SVGs inserted.");
       })();
-    </script>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const mobileMenuIcon = document.getElementById("mobile-menu-icon");
-
-        if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
-          mobileMenuButton.addEventListener("click", function () {
-            const isMenuHidden = mobileMenu.classList.toggle("hidden");
-            // Altera o ícone do menu (hambúrguer para X e vice-versa)
-            if (isMenuHidden) {
-              mobileMenuIcon.setAttribute("d", "M4 6h16M4 12h16m-7 6h7"); // Ícone de hambúrguer
-            } else {
-              mobileMenuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12"); // Ícone de X
-            }
-          });
-
-          // Fecha o menu mobile ao clicar em um link
-          const mobileLinks = mobileMenu.querySelectorAll("a");
-          mobileLinks.forEach((link) => {
-            link.addEventListener("click", function () {
-              mobileMenu.classList.add("hidden");
-              mobileMenuIcon.setAttribute("d", "M4 6h16M4 12h16m-7 6h7"); // Volta para o ícone de hambúrguer
-            });
-          });
-        }
-
-        // Atualiza o ano no rodapé
-        const currentYearSpan = document.getElementById("current-year");
-        if (currentYearSpan) {
-          currentYearSpan.textContent = new Date().getFullYear();
-        }
-
-        // Lógica para alternar o idioma selecionado no cabeçalho
-        const langButtons = document.querySelectorAll(
-          ".header-lang-selector button"
-        );
-        langButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            langButtons.forEach((btn) => {
-              btn.classList.remove(
-                "selected",
-                "bg-brand-blue-royal",
-                "text-black"
-              );
-              btn.classList.add(
-                "hover:bg-brand-blue-royal",
-                "hover:text-black"
-              );
-            });
-            this.classList.add("selected", "bg-brand-blue-royal", "text-black");
-            this.classList.remove(
-              "hover:bg-brand-blue-royal",
-              "hover:text-black"
-            );
-          });
-        });
-
-        // --- LÓGICA PARA MUDAR O CABEÇALHO AO ROLAR A PÁGINA ---
-        const header = document.querySelector("header");
-        const logoImg = document.getElementById("header-logo");
-        const originalLogoSrc = logoImg.getAttribute("src");
-        const darkLogoSrc = logoImg.getAttribute("data-logo-dark");
-        const mobileMenuButtonIcon =
-          document.getElementById("mobile-menu-button");
-
-        window.addEventListener("scroll", () => {
-          const scrollPosition = window.scrollY;
-          // Adiciona a classe 'scrolled-header' quando a posição de rolagem for maior que 50px
-          if (scrollPosition > 50) {
-            header.classList.add("scrolled-header");
-            logoImg.src = darkLogoSrc;
-            mobileMenuButtonIcon.classList.remove("text-brand-neutral-beige");
-            mobileMenuButtonIcon.classList.add("text-brand-blue-dark");
-          } else {
-            // Remove a classe 'scrolled-header' quando a posição de rolagem for menor ou igual a 50px
-            header.classList.remove("scrolled-header");
-            logoImg.src = originalLogoSrc;
-            mobileMenuButtonIcon.classList.remove("text-brand-blue-dark");
-            mobileMenuButtonIcon.classList.add("text-brand-neutral-beige");
-          }
-        });
-
-        // === Card animations using IntersectionObserver (staggered) ===
-        const cards = document.querySelectorAll(".card-animate");
-        if (cards.length) {
-          if ("IntersectionObserver" in window) {
-            const observer = new IntersectionObserver(
-              (entries, obs) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    // find index for simple stagger
-                    const idx = Array.from(cards).indexOf(entry.target);
-                    setTimeout(
-                      () => entry.target.classList.add("visible"),
-                      idx * 90
-                    );
-                    obs.unobserve(entry.target);
-                  }
-                });
-              },
-              { threshold: 0.18 }
-            );
-            cards.forEach((card) => observer.observe(card));
-          } else {
-            // fallback: reveal all immediately
-            cards.forEach((c, i) =>
-              setTimeout(() => c.classList.add("visible"), i * 90)
-            );
-          }
-        }
-      });
     </script>
     <a
       href="https://api.whatsapp.com/send?phone=5511994127747"
