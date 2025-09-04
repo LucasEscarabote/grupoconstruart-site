@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WGXL7WJ2");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Construart - Contato</title>
@@ -368,8 +380,16 @@
     </style>
   </head>
   <body class="bg-white">
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WGXL7WJ2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <header
-      class="fixed top-0 left-0 w-full z-20 text-brand-blue-dark transition-colors duration-300 scrolled-header"
+      class="fixed top-0 left-0 w-full z-20 transition-colors duration-300 scrolled-header"
     >
       <div
         class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-white/70 header-top-text"
@@ -659,13 +679,11 @@
                 method="POST"
                 class="contact-form space-y-6"
               >
-                <!-- Removido o campo _next para usar o padrão do FormSubmit.co e evitar erro de página não encontrada -->
                 <input
                   type="hidden"
                   name="_subject"
                   value="Nova Mensagem do Site da Construart!"
                 />
-                <!-- Desativado o CAPTCHA conforme solicitado -->
                 <input type="hidden" name="_captcha" value="false" />
                 <div class="form-group">
                   <input
@@ -799,10 +817,10 @@
               <li>
                 Email:
                 <a
-                  href="mailto:info@construart.com"
+                  href="mailto:obras@grupoconstruart.com.br"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
-                  aria-label="Enviar email para info@construart.com"
-                  >info@construart.com</a
+                  aria-label="Enviar email para obras@grupoconstruart.com.br"
+                  >obras@grupoconstruart.com.br</a
                 >
               </li>
               <li>
@@ -918,17 +936,6 @@
           mobileMenuButton.addEventListener("click", function () {
             mobileMenu.classList.toggle("hidden");
           });
-        }
-      });
-    </script>
-    <script>
-      // Altera a cor do cabeçalho ao rolar a página
-      const header = document.querySelector("header");
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          header.classList.add("scrolled-header");
-        } else {
-          header.classList.remove("scrolled-header");
         }
       });
     </script>

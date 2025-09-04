@@ -255,81 +255,80 @@
       }
 
       /* Estilos para a seção "COMO FUNCIONA O PROCESSO?" */
-      #how-it-works .process-item {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 2rem; /* Espaçamento entre os itens */
-        position: relative;
-      }
+#how-it-works .process-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3rem; /* Aumenta a distância entre os itens */
+  position: relative;
+  text-align: left;
+}
 
-      #how-it-works .process-item:last-child {
-        margin-bottom: 0; /* Remove margem do último item */
-      }
+#how-it-works .process-item:last-child {
+  margin-bottom: 0;
+}
 
-      #how-it-works .process-icon-container {
-        position: relative;
-        z-index: 10; /* Garante que o ícone fique sobre a linha */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 60px; /* Tamanho do círculo do ícone */
-        height: 60px; /* Tamanho do círculo do ícone */
-        border-radius: 9999px; /* Torna o círculo perfeito */
-        border: 2px solid #00388c; /* Borda azul da sua marca */
-        background-color: white; /* Fundo branco para o ícone */
-        flex-shrink: 0; /* Impede que o container do ícone encolha */
-      }
+#how-it-works .process-icon-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 9999px;
+  border: 2px solid #222E5A; /* Cor da elipse */
+  background-color: white;
+  flex-shrink: 0;
+}
 
-      #how-it-works .process-text-content {
-        margin-left: 1.5rem; /* Espaçamento entre o ícone e o texto */
-        text-align: left; /* Alinha o texto à esquerda */
-      }
+#how-it-works .process-icon-container i {
+  color: #222E5A !important; /* Cor dos ícones */
+}
 
-      #how-it-works .process-text-content h3 {
-        font-size: 1.5rem; /* Tamanho do título */
-        font-weight: bold;
-        font-family: var(--font-serif, "Playfair Display", serif);
-        color: #222e5a; /* Azul escuro para o título */
-      }
+#how-it-works .process-text-content {
+  margin-left: 1.5rem;
+  text-align: left;
+}
 
-      #how-it-works .process-text-content p {
-        color: #6b7280; /* Cor para os dias úteis (cinza escuro) */
-        font-size: 1rem;
-        margin-top: 0.25rem;
-      }
+#how-it-works .process-text-content h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: var(--font-serif, "Playfair Display", serif);
+  color: #222e5a;
+}
 
-      /* Linha conectora vertical */
-      #how-it-works .timeline-line {
-        position: absolute;
-        left: 30px; /* Metade da largura do process-icon-container (60px/2) */
-        top: 60px; /* Abaixo do primeiro ícone (altura do ícone + padding/margem) */
-        bottom: 60px; /* Acima do último ícone */
-        width: 2px;
-        background-color: #00388c; /* Cor azul da sua marca */
-        z-index: 5; /* Fica abaixo dos ícones */
-      }
+#how-it-works .process-text-content p {
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
 
-      /* Responsividade para telas menores */
-      @media (max-width: 768px) {
-        #how-it-works .process-item {
-          justify-content: center; /* Centraliza itens em telas menores */
-        }
-        #how-it-works .timeline-line {
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        #how-it-works .process-icon-container {
-          width: 50px;
-          height: 50px;
-        }
-        #how-it-works .process-text-content {
-          margin-left: 1rem;
-        }
-        #how-it-works .process-text-content h3 {
-          font-size: 1.25rem;
-        }
-      }
+/* Remover a linha conectora vertical */
+#how-it-works .timeline-line {
+  display: none; /* Esconde a linha */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  #how-it-works .process-item {
+    justify-content: flex-start;
+  }
+  /* Manter a linha oculta em mobile também */
+  #how-it-works .timeline-line {
+    display: none;
+  }
+  #how-it-works .process-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+  #how-it-works .process-text-content {
+    margin-left: 1.5rem;
+  }
+  #how-it-works .process-text-content h3 {
+    font-size: 1.5rem;
+  }
+}
     </style>
     <script>
       (function (w, d, s, l, i) {
@@ -682,89 +681,91 @@
     </main>
 
     <section
-      id="how-it-works"
-      class="relative bg-white py-16 md:py-24 font-sans bg-no-repeat bg-cover bg-center"
+  id="how-it-works"
+  class="relative bg-white py-16 md:py-24 font-sans bg-no-repeat bg-cover bg-center flex justify-center items-center"
+>
+  <div class="container mx-auto px-6 text-center">
+    <h2
+      class="text-4xl md:text-5xl font-serif font-bold mb-4 text-[#222E5A] animate-fade-in-up"
     >
-      <div class="container mx-auto px-6 text-center">
-        <h2
-          class="text-4xl md:text-5xl font-serif font-bold mb-4 text-[#222E5A] animate-fade-in-up"
-        >
-          COMO FUNCIONA O PROCESSO?
-        </h2>
-        <p class="text-gray-700 mt-4 mb-12 animate-fade-in-up delay-200">
-          OBS: O PRAZO PODE VARIAR DE ACORDO COM O ESCOPO DA REFORMA.
-        </p>
+      COMO FUNCIONA O PROCESSO?
+    </h2>
+    <p class="text-gray-700 mt-4 mb-12 animate-fade-in-up delay-200">
+      OBS: O PRAZO PODE VARIAR DE ACORDO COM O ESCOPO DA REFORMA.
+    </p>
 
-        <div
-          class="relative max-w-2xl mx-auto flex flex-col items-start md:items-center"
-        >
-          <div class="process-item animate-fade-in-up delay-400">
-            <div class="process-icon-container">
-              <i
-                data-lucide="calendar-check"
-                class="w-8 h-8 text-[#00388C]"
-              ></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Agendamento de Reunião</h3>
-              <p class="text-gray-500">1 DIA ÚTIL</p>
-            </div>
-          </div>
-
-          <div class="process-item animate-fade-in-up delay-600">
-            <div class="process-icon-container">
-              <i
-                data-lucide="message-square"
-                class="w-8 h-8 text-[#00388C]"
-              ></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Bate-papo com Arquiteto</h3>
-              <p class="text-gray-500">5 DIAS ÚTEIS</p>
-            </div>
-          </div>
-
-          <div class="process-item animate-fade-in-up delay-800">
-            <div class="process-icon-container">
-              <i data-lucide="monitor" class="w-8 h-8 text-[#00388C]"></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Apresentação do Projeto e Orçamento</h3>
-              <p class="text-gray-500">5 DIAS ÚTEIS</p>
-            </div>
-          </div>
-
-          <div class="process-item animate-fade-in-up delay-1000">
-            <div class="process-icon-container">
-              <i data-lucide="clipboard" class="w-8 h-8 text-[#00388C]"></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Ajustes + Assinatura de Contrato</h3>
-              <p class="text-gray-500">20 DIAS ÚTEIS</p>
-            </div>
-          </div>
-
-          <div class="process-item animate-fade-in-up delay-1200">
-            <div class="process-icon-container">
-              <i data-lucide="hard-hat" class="w-8 h-8 text-[#00388C]"></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Início das Obras</h3>
-              <p class="text-gray-500">60 DIAS ÚTEIS</p>
-            </div>
-          </div>
-
-          <div class="process-item animate-fade-in-up delay-1400">
-            <div class="process-icon-container">
-              <i data-lucide="key" class="w-8 h-8 text-[#00388C]"></i>
-            </div>
-            <div class="process-text-content">
-              <h3 class="text-gray-700">Entrega do Apê dos Sonhos</h3>
-            </div>
-          </div>
+    <div class="relative max-w-2xl mx-auto flex flex-col items-center text-center">
+      <div class="process-item animate-fade-in-up delay-400">
+        <div class="process-icon-container">
+          <i
+            data-lucide="calendar-check"
+            class="w-8 h-8 text-[#00388C]"
+          ></i>
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Agendamento de Reunião</h3>
+          <p class="text-gray-500">1 DIA ÚTIL</p>
         </div>
       </div>
-    </section>
+
+      <div class="process-item animate-fade-in-up delay-600">
+        <div class="process-icon-container">
+          <i
+            data-lucide="message-square"
+            class="w-8 h-8 text-[#00388C]"
+          ></i>
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Bate-papo com Arquiteto</h3>
+          <p class="text-gray-500">5 DIAS ÚTEIS</p>
+        </div>
+      </div>
+
+      <div class="process-item animate-fade-in-up delay-800">
+        <div class="process-icon-container">
+          <i data-lucide="monitor" class="w-8 h-8 text-[#00388C]"></i>
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Apresentação do Projeto e Orçamento</h3>
+          <p class="text-gray-500">5 DIAS ÚTEIS</p>
+        </div>
+      </div>
+
+      <div class="process-item animate-fade-in-up delay-1000">
+        <div class="process-icon-container">
+          <i data-lucide="clipboard" class="w-8 h-8 text-[#00388C]"></i>
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Ajustes + Assinatura de Contrato</h3>
+          <p class="text-gray-500">20 DIAS ÚTEIS</p>
+        </div>
+      </div>
+
+      <div class="process-item animate-fade-in-up delay-1200">
+        <div class="process-icon-container">
+          <img
+            src="./images/hard-hat.svg"
+            alt="Ícone de capacete"
+            class="w-8 h-8"
+          />
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Início das Obras</h3>
+          <p class="text-gray-500">60 DIAS ÚTEIS</p>
+        </div>
+      </div>
+
+      <div class="process-item animate-fade-in-up delay-1400">
+        <div class="process-icon-container">
+          <img src="./images/key.svg" alt="Ícone de chave" class="w-8 h-8" />
+        </div>
+        <div class="process-text-content">
+          <h3 class="text-gray-700">Entrega do Apê dos Sonhos</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section id="why-us" class="bg-white py-16 md:py-2 text-[#222E5A]">
       <div class="container mx-auto px-6 text-center">
@@ -925,10 +926,10 @@
               <li>
                 Email:
                 <a
-                  href="mailto:info@construart.com"
+                  href="mailto:obras@grupoconstruart.com.br"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
-                  aria-label="Enviar email para info@construart.com"
-                  >info@construart.com</a
+                  aria-label="Enviar email para obras@grupoconstruart.com.br"
+                  >obras@grupoconstruart.com.br</a
                 >
               </li>
               <li>
