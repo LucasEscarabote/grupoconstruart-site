@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WGXL7WJ2");
-    </script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Construart - Contato</title>
@@ -168,23 +154,28 @@
         transition: background-color 0.3s ease;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
+
       .scrolled-header .header-top-text,
       .scrolled-header .header-bottom-nav a {
         color: #222e5a !important; /* Cor do texto e links da navegação para o modo rolado */
         transition: color 0.3s ease;
       }
+
       .scrolled-header .header-top-text a:hover {
         color: #203c88 !important; /* Cor dos links no hover */
       }
+
       .scrolled-header .header-lang-selector button {
         color: black !important;
         background-color: transparent !important;
         border-color: #203c88 !important;
       }
+
       .scrolled-header .header-lang-selector button:hover {
         background-color: #203c88 !important;
         color: white !important;
       }
+
       .scrolled-header .header-lang-selector button.selected {
         background-color: #203c88 !important;
         color: white !important;
@@ -204,227 +195,721 @@
         animation-fill-mode: forwards;
       }
       .animate-svg-path {
-        stroke-dasharray: 400;
+        stroke-dasharray: 400; /* Um valor alto para esconder toda a linha inicialmente */
         stroke-dashoffset: 400;
         animation: drawPath 2s ease-in-out forwards 0.5s;
       }
+
       @keyframes drawPath {
         to {
-          stroke-dashoffset: 0;
+          stroke-dashoffset: 0; /* Animação para 0 revela a linha */
         }
       }
       @media (max-width: 767px) {
         .relative.w-full.max-w-md {
-          margin-top: 50px;
+          margin-top: 50px; /* Altere este valor para ajustar a posição */
         }
+      }
+      .service-grid-comexport {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        /* altura base de cada “fileira”; quem span 2 fica com o dobro */
+        grid-auto-rows: 170px;
+        gap: 1.5rem;
+        /* layout com os dois blocos verticais (esq e dir) e degraus no meio */
+        grid-template-areas:
+          "item1 .     item3"
+          "item1 item4 item5"
+          "item2 item6 item5";
+        position: relative;
+        margin-top: -120px;
+        z-index: 10;
+      }
+
+      /* cartas ocupam 100% da célula da grid (para “esticar” nos spans) */
+      .service-grid-comexport > div {
+        height: 100%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* áreas nomeadas */
+      .item1 {
+        grid-area: item1;
+      } /* Integração Logística (alto – 2 linhas) */
+      .item2 {
+        grid-area: item2;
+      } /* Otimização Fiscal (baixo-esq) */
+      .item3 {
+        grid-area: item3;
+      } /* Simplificação Operacional (topo-dir) */
+      .item4 {
+        grid-area: item4;
+      } /* Tecnologia (meio-coluna) */
+      .item5 {
+        grid-area: item5;
+      } /* Integridade & Compliance (alto – 2 linhas) */
+      .item6 {
+        grid-area: item6;
+      } /* Soluções Financeiras (baixo-meio) */
+
+      /* responsivo: sem sobreposição e em 1 coluna no mobile */
+      @media (max-width: 768px) {
+        .service-grid-comexport {
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          grid-template-areas:
+            "item1"
+            "item3"
+            "item4"
+            "item2"
+            "item6"
+            "item5";
+          margin-top: 0;
+        }
+      }
+
+      /* ajuste fino da altura base em telas maiores (opcional) */
+      /* @media (min-width:1024px){ .service-grid-comexport{ grid-auto-rows: 190px; } }
+      @media (min-width:1280px){ .service-grid-comexport{ grid-auto-rows: 210px; } } */
+      .service-grid-construart {
+        display: grid;
+        grid-template-columns: repeat(
+          1,
+          minmax(0, 1fr)
+        ); /* Default to 1 column */
+        gap: 1.5rem; /* Gap between cards */
+        align-items: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      @media (min-width: 768px) {
+        /* Medium screens and up */
+        .service-grid-construart {
+          grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns */
+        }
+      }
+
+      @media (min-width: 1024px) {
+        /* Large screens and up */
+        .service-grid-construart {
+          grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
+        }
+      }
+      /* Card entrance animation */
+      @keyframes cardFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card-animate {
+        opacity: 0;
+        transform: translateY(28px);
+        will-change: opacity, transform;
+        transition: opacity 480ms cubic-bezier(0.2, 0.9, 0.2, 1),
+          transform 480ms cubic-bezier(0.2, 0.9, 0.2, 1);
+      }
+      .card-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+        /* small extra pop using keyframes for a crisper effect */
+        animation: cardFadeUp 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+      }
+
+      .card-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+    </style>
+    <style>
+      /* Garante que os SVGs do lucide herdem a cor branca */
+      i[data-lucide] svg,
+      i[data-lucide] {
+        color: #ffffff;
+        stroke: #ffffff;
+      }
+    </style>
+    <style>
+      /* Garante que os SVGs do lucide herdem a cor branca */
+      i[data-lucide] svg,
+      i[data-lucide] {
+        color: #ffffff;
+        stroke: #ffffff;
+      }
+
+      @keyframes drawBorder {
+        0% {
+          border-width: 0px;
+          opacity: 0;
+        }
+        100% {
+          border-width: 2px;
+          opacity: 1;
+        }
+      }
+      .animated-border {
+        animation: drawBorder 1s ease-out forwards 0.5s;
+        border-style: solid;
+        border-color: #222e5a; /* Cor da borda com a sua cor de marca */
+      }
+      .animated-border {
+        animation: drawBorder 1s ease-out forwards 0.5s;
+        border-style: solid;
+        border-color: #222e5a; /* Cor da borda com a sua cor de marca */
       }
     </style>
   </head>
-  <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WGXL7WJ2"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <section
-      class="bg-brand-blue-dark relative pt-24 md:pt-40 lg:pt-48 pb-12 overflow-hidden"
+  <body class="bg-white">
+    <header
+      class="fixed top-0 left-0 w-full z-20 text-brand-blue-dark transition-colors duration-300 scrolled-header"
     >
       <div
-        class="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center justify-between"
+        class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-white/70 header-top-text"
       >
-        <div class="md:w-1/2 text-white text-center md:text-left mb-8 md:mb-0">
-          <h1
-            class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-4 animate-fade-in-up"
+        <ul class="flex space-x-4">
+          <li>
+            <a
+              href="contato.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Contato"
+              >Contato</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ver Oportunidades de Carreira"
+              >Oportunidades</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              id="increase-font"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Aumentar Fonte"
+            >
+              A+
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              id="decrease-font"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Diminuir Fonte"
+            >
+              A-
+            </a>
+          </li>
+        </ul>
+        <div class="header-lang-selector ml-4">
+          <button
+            data-lang="PT"
+            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 bg-brand-blue-royal text-black selected"
+            aria-label="Mudar idioma para Português"
           >
-            Fale conosco.
-          </h1>
-          <p
-            class="text-lg md:text-xl lg:text-2xl font-light mb-6 animate-fade-in-up delay-200"
+            PT
+          </button>
+          <button
+            data-lang="EN"
+            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
+            aria-label="Change language to English"
           >
-            Vamos construir algo incrível juntos.
-          </p>
+            EN
+          </button>
+          <button
+            data-lang="ES"
+            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
+            aria-label="Cambiar idioma a Español"
+          >
+            ES
+          </button>
         </div>
       </div>
-    </section>
-    <section class="py-16 md:py-24">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div class="col">
-            <h2
-              class="text-3xl md:text-4xl font-serif font-bold text-brand-blue-royal mb-8"
-            >
-              Envie sua mensagem
-            </h2>
-            <form
-              id="contact-form"
-              class="space-y-6"
-              action="https://formspree.io/f/xgeggwko"
-              method="POST"
-            >
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-700"
-                  >Nome</label
-                >
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue-royal focus:border-brand-blue-royal sm:text-sm"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue-royal focus:border-brand-blue-royal sm:text-sm"
-                />
-              </div>
-              <div>
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-700"
-                  >Mensagem</label
-                >
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="4"
-                  required
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue-royal focus:border-brand-blue-royal sm:text-sm"
-                ></textarea>
-              </div>
-              <div class="text-right">
-                <button
-                  type="submit"
-                  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-brand-blue-royal hover:bg-brand-blue-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue-royal transition-colors"
-                >
-                  Enviar
-                </button>
-              </div>
-            </form>
-          </div>
-          <div class="col">
-            <h2
-              class="text-3xl md:text-4xl font-serif font-bold text-brand-blue-royal mb-8"
-            >
-              Onde estamos
-            </h2>
-            <p class="text-gray-700 mb-4">
-              Rua Exemplo, 123 - Centro<br />
-              Cidade, Estado, 12345-678<br />
-              Brasil
-            </p>
-            <p class="text-gray-700 mb-4">
-              <i data-lucide="mail" class="inline-block mr-2"></i>
-              contato@construart.com.br
-            </p>
-            <p class="text-gray-700 mb-8">
-              <i data-lucide="phone" class="inline-block mr-2"></i>
-              (99) 99999-9999
-            </p>
-            <div class="aspect-w-16 aspect-h-9">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.5786411516245!2d-51.18956972370954!3d-29.99222482352136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951978255b6c3679%3A0x673c09b23b16954a!2sR.%20Exemplo%2C%20123%20-%20Centro%2C%20Porto%20Alegre%20-%20RS%2C%2090450-000!5e0!3m2!1spt-BR!2sbr!4v1717367856641!5m2!1spt-BR!2sbr"
-                width="100%"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                class="w-full h-full rounded-lg shadow-lg"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <a
-      href="https://wa.me/5599999999999"
-      class="whatsapp-flutuante flex items-center justify-center bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors"
-      target="_blank"
-    >
-      <i data-lucide="message-square" class="w-8 h-8"></i>
-    </a>
-    <footer
-      class="bg-brand-blue-dark text-white py-12 px-4 md:px-0 relative overflow-hidden"
-    >
-      <div
-        class="absolute inset-0 z-0 opacity-10 hidden md:block"
-        style="
-          background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 100 100%22 preserveAspectRatio=%22none%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%2250%25%22 cy=%2250%25%22 r=%2250%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%23203C88%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23203C88%22 stop-opacity=%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%225%22 fill=%22url(%23g)%22%2F%3E%3Ccircle cx=%2290%22 cy=%2220%22 r=%228%22 fill=%22url(%23g)%22%2F%3E%3Ccircle cx=%2230%22 cy=%2270%22 r=%226%22 fill=%22url(%23g)%22%2F%3E%3Ccircle cx=%2260%22 cy=%2290%22 r=%227%22 fill=%22url(%23g)%22%2F%3E%3Ccircle cx=%2275%22 cy=%2240%22 r=%224%22 fill=%22url(%23g)%22%2F%3E%3Ccircle cx=%2225%22 cy=%2250%22 r=%229%22 fill=%22url(%23g)%22%2F%3E%3C%2Fsvg%3E');
-          background-size: cover;
-          animation: particle-animation 20s linear infinite;
-        "
-      ></div>
-      <div
-        class="container mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-8 md:space-y-0"
+
+      <div class="w-full h-[1px] bg-brand-blue-royal opacity-70"></div>
+
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center header-bottom-nav"
       >
         <div class="flex-shrink-0">
-          <a href="/index.html" class="flex items-center justify-center">
+          <a href="index.html" aria-label="Voltar para o Início">
             <img
-              src="./images/logo-construart-branco.svg"
+              id="header-logo"
+              src="./images/logo.jpeg"
+              data-logo-dark="./images/logo-dark.jpeg"
               alt="Logo Construart"
-              class="h-10 md:h-12 w-auto"
+              width="150"
+              height="50"
             />
           </a>
         </div>
-        <div class="flex-grow md:mx-12">
-          <p class="text-sm">
-            © <span id="current-year"></span> Construart. Todos os direitos
-            reservados.
-          </p>
-        </div>
-        <div class="flex-shrink-0">
-          <nav class="flex space-x-6 justify-center">
-            <a href="/index.html" class="hover:text-brand-neutral-beige"
+
+        <ul class="hidden md:flex items-center space-x-6 font-serif">
+          <li>
+            <a
+              href="index.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Início"
               >Início</a
             >
-            <a href="/sobre.html" class="hover:text-brand-neutral-beige"
+          </li>
+          <li>
+            <a
+              href="sobre.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Sobre Nós"
               >Sobre Nós</a
             >
-            <a href="/servicos.html" class="hover:text-brand-neutral-beige"
+          </li>
+          <li>
+            <a
+              href="servicos.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Serviços"
               >Serviços</a
             >
-            <a href="/valores.html" class="hover:text-brand-neutral-beige"
-              >Valores</a
+          </li>
+          <li>
+            <a
+              href="valores.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Nossos Valores"
+              >Nossos Valores</a
             >
-            <a href="/contato.html" class="hover:text-brand-neutral-beige"
+          </li>
+          <li>
+            <a
+              href="contato.html"
+              class="hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Contato"
               >Contato</a
             >
-          </nav>
+          </li>
+        </ul>
+
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="text-brand-blue-dark hover:text-brand-blue-royal focus:outline-none"
+            aria-label="Abrir menu mobile"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                id="mobile-menu-icon"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden px-6 pb-4 bg-white bg-opacity-70"
+      >
+        <ul class="flex flex-col space-y-4 font-serif">
+          <li>
+            <a
+              href="index.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Início"
+              >Início</a
+            >
+          </li>
+          <li>
+            <a
+              href="sobre.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Sobre Nós"
+              >Sobre Nós</a
+            >
+          </li>
+          <li>
+            <a
+              href="servicos.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Serviços"
+              >Serviços</a
+            >
+          </li>
+          <li>
+            <a
+              href="valores.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Projetos"
+              >Nossos Valores</a
+            >
+          </li>
+          <li>
+            <a
+              href="contato.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Contato"
+              >Contato</a
+            >
+          </li>
+          <li class="pt-4 mt-4 border-t border-brand-neutral-beige/10">
+            <a
+              href="contato.html"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ir para a seção Contato"
+              >Contato</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ver Oportunidades de Carreira"
+              >Oportunidades</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block hover:text-brand-blue-dark transition-colors duration-300"
+              aria-label="Ajustar Configurações de Acessibilidade"
+              >Acessibilidade</a
+            >
+          </li>
+          <li
+            class="pt-4 mt-4 border-t border-brand-neutral-beige/10 flex justify-center space-x-2 header-lang-selector"
+          >
+            <button
+              data-lang="PT"
+              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 bg-brand-blue-royal text-black selected"
+              aria-label="Mudar idioma para Português"
+            >
+              PT
+            </button>
+            <button
+              data-lang="EN"
+              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
+              aria-label="Change language to English"
+            >
+              EN
+            </button>
+            <button
+              data-lang="ES"
+              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
+              aria-label="Cambiar idioma a Español"
+            >
+              ES
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        class="absolute bottom-0 left-0 w-full h-[1px] bg-brand-blue-royal opacity-70"
+      ></div>
+    </header>
+
+    <main>
+      <section
+        id="contato"
+        class="call-to-action-section py-40 md:py-56 bg-gradient-to-br from-[#222E5A] to-brand-blue-royal text-white"
+      >
+        <div class="container mx-auto px-6">
+          <div
+            class="cta-content-grid flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16"
+          >
+            <div class="cta-text-area text-center md:text-left max-w-2xl">
+              <p
+                class="cta-pre-title text-2xl md:text-3xl font-bold font-serif"
+              >
+                Construart
+              </p>
+              <h2
+                class="text-4xl md:text-6xl font-serif leading-tight mt-4 mb-6"
+              >
+                TRANSFORMAMOS IDÉIAS EM ESTRUTURAS DURADOURAS.
+              </h2>
+              <p class="mt-4 text-lg md:text-xl opacity-90">
+                Seu projeto de construção merece excelência e precisão. Preencha
+                o formulário e vamos construir juntos o seu futuro!
+              </p>
+            </div>
+            <div
+              class="cta-form-area w-full max-w-lg bg-white p-8 rounded-lg shadow-xl"
+            >
+              <form
+                action="https://formsubmit.co/Projetosconstruart@outlook.com"
+                method="POST"
+                class="contact-form space-y-6"
+              >
+                <!-- Removido o campo _next para usar o padrão do FormSubmit.co e evitar erro de página não encontrada -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="Nova Mensagem do Site da Construart!"
+                />
+                <!-- Desativado o CAPTCHA conforme solicitado -->
+                <input type="hidden" name="_captcha" value="false" />
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#222E5A] text-black"
+                    placeholder="Seu Nome Completo"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    id="whatsapp"
+                    name="whatsapp"
+                    class="form-control w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#222E5A] text-black"
+                    placeholder="Seu WhatsApp (com DDD)"
+                    pattern="[0-9]{10,11}"
+                    title="Por favor, insira um número de telefone válido (somente números, 10 ou 11 dígitos com DDD)."
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#222E5A] text-black"
+                    placeholder="Seu Melhor E-mail"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#222E5A] text-black h-40 resize-none"
+                    placeholder="Conte-nos sobre o seu projeto e suas necessidades"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="btn-submit w-full px-6 py-3 font-semibold rounded-md transition-colors duration-300 bg-brand-neutral-beige text-brand-blue-royal hover:bg-gray-100 hover:text-[#222E5A] text-lg"
+                  >
+                    Enviar Mensagem
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      id="contact"
+      class="bg-white text-brand-blue-dark py-12 font-sans pt-40"
+    >
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <a href="index.html" aria-label="Voltar para o Início">
+              <img
+                src="./images/logo-blue.png"
+                alt="Logo Construart"
+                width="150"
+                height="50"
+              />
+            </a>
+            <p class="mt-4 text-sm">
+              Construindo legados com precisão e excelência.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
+              Navegação
+            </h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  href="index.html"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ir para a seção Início"
+                  >Início</a
+                >
+              </li>
+              <li>
+                <a
+                  href="sobre.html"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ir para a seção Sobre Nós"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a
+                  href="servicos.html"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ir para a seção Serviços"
+                  >Serviços</a
+                >
+              </li>
+              <li>
+                <a
+                  href="valores.html"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ir para a seção Nossos Valores"
+                  >Nossos Valores</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contato.html"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ir para a seção Contato"
+                  >Contato</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
+              Contato
+            </h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                Email:
+                <a
+                  href="mailto:info@construart.com"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Enviar email para info@construart.com"
+                  >info@construart.com</a
+                >
+              </li>
+              <li>
+                Telefone:
+                <a
+                  href="tel:11 99412-7747"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Ligar para 11 99412-7747"
+                  >11 99412-7747</a
+                >
+              </li>
+              <li>Endereço: Rua Major Quedinho, 111</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-brand-blue-dark font-serif font-bold mb-4">
+              Siga-nos
+            </h4>
+            <ul class="flex space-x-4">
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Visitar nossa página no Facebook"
+                >
+                  <img
+                    src="./images/icon-facebook.svg"
+                    alt="Facebook"
+                    class="w-5 h-5"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Visitar nossa página no Instagram"
+                >
+                  <img
+                    src="./images/icon-instagram.svg"
+                    alt="Instagram"
+                    class="w-5 h-5"
+                  />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="hover:text-brand-blue-dark transition-colors duration-300"
+                  aria-label="Visitar nossa página no LinkedIn"
+                >
+                  <img
+                    src="./images/icon-linkedin.svg"
+                    alt="LinkedIn"
+                    class="w-5 h-5"
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <script>
-        // Animação para partículas
-        const style = document.createElement("style");
-        style.innerHTML = `
-          @keyframes particle-animation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(10px, 15px); }
-            50% { transform: translate(-10px, -5px); }
-            75% { transform: translate(5px, -10px); }
-            100% { transform: translate(0, 0); }
-          }
-          `;
-        document.head.appendChild(style);
-      </script>
+      <div
+        class="mt-8 pt-4 border-t border-brand-neutral-beige/20 text-center text-sm"
+      >
+        <p>
+          &copy; <span id="current-year"></span> Construart. Todos os direitos
+          reservados.
+        </p>
+      </div>
     </footer>
+    <script src="./scripts/main.js"></script>
     <script>
+      // Código de Acessibilidade
+      document.addEventListener("DOMContentLoaded", function () {
+        const increaseBtn = document.getElementById("increase-font");
+        const decreaseBtn = document.getElementById("decrease-font");
+
+        if (increaseBtn && decreaseBtn) {
+          increaseBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            ajustarFonte(1.1); // Aumenta em 10%
+          });
+
+          decreaseBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            ajustarFonte(0.9); // Diminui em 10%
+          });
+        }
+
+        function ajustarFonte(fator) {
+          const elementos = document.querySelectorAll("body *");
+          elementos.forEach(function (elemento) {
+            const tamanhoAtual = window
+              .getComputedStyle(elemento, null)
+              .getPropertyValue("font-size");
+            const tamanhoEmPx = parseFloat(tamanhoAtual);
+            const novoTamanho = tamanhoEmPx * fator;
+
+            // Evita que a fonte fique muito pequena
+            if (novoTamanho > 10) {
+              elemento.style.fontSize = novoTamanho + "px";
+            }
+          });
+        }
+      });
       // Funcionalidade do menu móvel
       document.addEventListener("DOMContentLoaded", function () {
         const mobileMenuButton = document.getElementById("mobile-menu-button");

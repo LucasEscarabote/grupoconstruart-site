@@ -39,6 +39,9 @@
               "brand-neutral": {
                 beige: "#E5DDD3",
               },
+              "brand-blue-new": {
+                DEFAULT: "#00388C",
+              },
               "-500": "#203C88",
             },
             fontFamily: {
@@ -120,9 +123,6 @@
         bottom: 20px;
         right: 20px;
         z-index: 999;
-      }
-      font-family: var(--font-inter, "Inter", sans-serif);
-      margin: 0;
       }
       h1,
       h2,
@@ -253,27 +253,82 @@
           margin-top: 0;
         }
       }
-    </style>
-    <style>
-      @keyframes drawBorder {
-        0% {
-          border-width: 0px;
-          opacity: 0;
-        }
-        100% {
-          border-width: 2px;
-          opacity: 1;
-        }
+
+      /* Estilos para a seção "COMO FUNCIONA O PROCESSO?" */
+      #how-it-works .process-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem; /* Espaçamento entre os itens */
+        position: relative;
       }
-      .animated-border {
-        animation: drawBorder 1s ease-out forwards 0.5s;
-        border-style: solid;
-        border-color: #222e5a; /* Cor da borda com a sua cor de marca */
+
+      #how-it-works .process-item:last-child {
+        margin-bottom: 0; /* Remove margem do último item */
       }
-      .animated-border {
-        animation: drawBorder 1s ease-out forwards 0.5s;
-        border-style: solid;
-        border-color: #222e5a; /* Cor da borda com a sua cor de marca */
+
+      #how-it-works .process-icon-container {
+        position: relative;
+        z-index: 10; /* Garante que o ícone fique sobre a linha */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px; /* Tamanho do círculo do ícone */
+        height: 60px; /* Tamanho do círculo do ícone */
+        border-radius: 9999px; /* Torna o círculo perfeito */
+        border: 2px solid #00388c; /* Borda azul da sua marca */
+        background-color: white; /* Fundo branco para o ícone */
+        flex-shrink: 0; /* Impede que o container do ícone encolha */
+      }
+
+      #how-it-works .process-text-content {
+        margin-left: 1.5rem; /* Espaçamento entre o ícone e o texto */
+        text-align: left; /* Alinha o texto à esquerda */
+      }
+
+      #how-it-works .process-text-content h3 {
+        font-size: 1.5rem; /* Tamanho do título */
+        font-weight: bold;
+        font-family: var(--font-serif, "Playfair Display", serif);
+        color: #222e5a; /* Azul escuro para o título */
+      }
+
+      #how-it-works .process-text-content p {
+        color: #6b7280; /* Cor para os dias úteis (cinza escuro) */
+        font-size: 1rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Linha conectora vertical */
+      #how-it-works .timeline-line {
+        position: absolute;
+        left: 30px; /* Metade da largura do process-icon-container (60px/2) */
+        top: 60px; /* Abaixo do primeiro ícone (altura do ícone + padding/margem) */
+        bottom: 60px; /* Acima do último ícone */
+        width: 2px;
+        background-color: #00388c; /* Cor azul da sua marca */
+        z-index: 5; /* Fica abaixo dos ícones */
+      }
+
+      /* Responsividade para telas menores */
+      @media (max-width: 768px) {
+        #how-it-works .process-item {
+          justify-content: center; /* Centraliza itens em telas menores */
+        }
+        #how-it-works .timeline-line {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        #how-it-works .process-icon-container {
+          width: 50px;
+          height: 50px;
+        }
+        #how-it-works .process-text-content {
+          margin-left: 1rem;
+        }
+        #how-it-works .process-text-content h3 {
+          font-size: 1.25rem;
+        }
       }
     </style>
     <script>
@@ -299,262 +354,262 @@
       ></iframe
     ></noscript>
     <header
-      class="fixed top-0 left-0 w-full z-20 text-brand-neutral-beige transition-colors duration-300"
-    >
-      <div
-        class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-white/70 header-top-text"
+  class="fixed top-0 left-0 w-full z-20 transition-colors duration-300 bg-white scrolled-header"
+>
+  <div
+    class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-brand-blue-dark/70 header-top-text"
+  >
+    <ul class="flex space-x-4">
+      <li>
+        <a
+          href="contato.html"
+          class="hover:text-brand-blue-dark transition-colors duration-300"
+          aria-label="Ir para a seção Contato"
+          >Contato</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="hover:text-brand-blue-dark transition-colors duration-300"
+          aria-label="Ver Oportunidades de Carreira"
+          >Oportunidades</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          id="increase-font"
+          class="hover:text-brand-blue-dark transition-colors duration-300"
+          aria-label="Aumentar Fonte"
+        >
+          A+
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          id="decrease-font"
+          class="hover:text-brand-blue-dark transition-colors duration-300"
+          aria-label="Diminuir Fonte"
+        >
+          A-
+        </a>
+      </li>
+    </ul>
+    <div class="header-lang-selector ml-4">
+      <button
+        data-lang="PT"
+        class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal bg-brand-blue-royal text-white selected"
+        aria-label="Mudar idioma para Português"
       >
-        <ul class="flex space-x-4">
-          <li>
-            <a
-              href="contato.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Contato"
-              >Contato</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ver Oportunidades de Carreira"
-              >Oportunidades</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              id="increase-font"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Aumentar Fonte"
-            >
-              A+
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              id="decrease-font"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Diminuir Fonte"
-            >
-              A-
-            </a>
-          </li>
-        </ul>
-        <div class="header-lang-selector ml-4">
-          <button
-            data-lang="PT"
-            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 bg-brand-blue-royal text-black selected"
-            aria-label="Mudar idioma para Português"
-          >
-            PT
-          </button>
-          <button
-            data-lang="EN"
-            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
-            aria-label="Change language to English"
-          >
-            EN
-          </button>
-          <button
-            data-lang="ES"
-            class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
-            aria-label="Cambiar idioma a Español"
-          >
-            ES
-          </button>
-        </div>
-      </div>
-
-      <div class="w-full h-[1px] bg-brand-blue-royal opacity-70"></div>
-
-      <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center header-bottom-nav"
+        PT
+      </button>
+      <button
+        data-lang="EN"
+        class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal hover:bg-brand-blue-royal hover:text-white"
+        aria-label="Change language to English"
       >
-        <div class="flex-shrink-0">
-          <a href="index.html" aria-label="Voltar para o Início">
-            <img
-              id="header-logo"
-              src="./images/logo.jpeg"
-              data-logo-dark="./images/logo-dark.jpeg"
-              alt="Logo Construart"
-              width="150"
-              height="50"
-            />
-          </a>
-        </div>
-
-        <ul class="hidden md:flex items-center space-x-6 font-serif">
-          <li>
-            <a
-              href="index.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Início"
-              >Início</a
-            >
-          </li>
-          <li>
-            <a
-              href="sobre.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Sobre Nós"
-              >Sobre Nós</a
-            >
-          </li>
-          <li>
-            <a
-              href="servicos.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Serviços"
-              >Serviços</a
-            >
-          </li>
-          <li>
-            <a
-              href="valores.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Nossos Valores"
-              >Nossos Valores</a
-            >
-          </li>
-          <li>
-            <a
-              href="contato.html"
-              class="hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Contato"
-              >Contato</a
-            >
-          </li>
-        </ul>
-
-        <div class="md:hidden">
-          <button
-            id="mobile-menu-button"
-            class="text-brand-neutral-beige hover:text-white focus:outline-none"
-            aria-label="Abrir menu mobile"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                id="mobile-menu-icon"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </nav>
-
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden px-6 pb-4 bg-black bg-opacity-70"
+        EN
+      </button>
+      <button
+        data-lang="ES"
+        class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal hover:bg-brand-blue-royal hover:text-white"
+        aria-label="Cambiar idioma a Español"
       >
-        <ul class="flex flex-col space-y-4 font-serif">
-          <li>
-            <a
-              href="index.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Início"
-              >Início</a
-            >
-          </li>
-          <li>
-            <a
-              href="sobre.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Sobre Nós"
-              >Sobre Nós</a
-            >
-          </li>
-          <li>
-            <a
-              href="servicos.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Serviços"
-              >Serviços</a
-            >
-          </li>
-          <li>
-            <a
-              href="valores.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Projetos"
-              >Nossos Valores</a
-            >
-          </li>
-          <li>
-            <a
-              href="contato.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Contato"
-              >Contato</a
-            >
-          </li>
-          <li class="pt-4 mt-4 border-t border-brand-neutral-beige/10">
-            <a
-              href="contato.html"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ir para a seção Contato"
-              >Contato</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ver Oportunidades de Carreira"
-              >Oportunidades</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block hover:text-white transition-colors duration-300"
-              aria-label="Ajustar Configurações de Acessibilidade"
-              >Acessibilidade</a
-            >
-          </li>
-          <li
-            class="pt-4 mt-4 border-t border-brand-neutral-beige/10 flex justify-center space-x-2 header-lang-selector"
-          >
-            <button
-              data-lang="PT"
-              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 bg-brand-blue-royal text-black selected"
-              aria-label="Mudar idioma para Português"
-            >
-              PT
-            </button>
-            <button
-              data-lang="EN"
-              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
-              aria-label="Change language to English"
-            >
-              EN
-            </button>
-            <button
-              data-lang="ES"
-              class="font-bold px-2 py-0.5 rounded-sm border border-white border-opacity-30 hover:bg-brand-blue-royal hover:text-black"
-              aria-label="Cambiar idioma a Español"
-            >
-              ES
-            </button>
-          </li>
-        </ul>
-      </div>
+        ES
+      </button>
+    </div>
+  </div>
 
-      <div
-        class="absolute bottom-0 left-0 w-full h-[1px] bg-brand-blue-royal opacity-70"
-      ></div>
-    </header>
+  <div class="w-full h-[1px] bg-brand-blue-royal opacity-70"></div>
+
+  <nav
+    class="container mx-auto px-6 py-4 flex justify-between items-center header-bottom-nav"
+  >
+    <div class="flex-shrink-0">
+      <a href="index.html" aria-label="Voltar para o Início">
+        <img
+          id="header-logo"
+          src="./images/logo-blue.png"
+          data-logo-dark="./images/logo-blue.png"
+          alt="Logo Construart"
+          width="150"
+          height="50"
+        />
+      </a>
+    </div>
+
+    <ul class="hidden md:flex items-center space-x-6 font-serif">
+      <li>
+        <a
+          href="index.html"
+          class="text-brand-blue-dark hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Início"
+          >Início</a
+        >
+      </li>
+      <li>
+        <a
+          href="sobre.html"
+          class="text-brand-blue-dark hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Sobre Nós"
+          >Sobre Nós</a
+        >
+      </li>
+      <li>
+        <a
+          href="servicos.html"
+          class="text-brand-blue-dark hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Serviços"
+          >Serviços</a
+        >
+      </li>
+      <li>
+        <a
+          href="valores.html"
+          class="text-brand-blue-dark hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Nossos Valores"
+          >Nossos Valores</a
+        >
+      </li>
+      <li>
+        <a
+          href="contato.html"
+          class="text-brand-blue-dark hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Contato"
+          >Contato</a
+        >
+      </li>
+    </ul>
+
+    <div class="md:hidden">
+      <button
+        id="mobile-menu-button"
+        class="text-brand-blue-dark hover:text-brand-blue-royal focus:outline-none"
+        aria-label="Abrir menu mobile"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            id="mobile-menu-icon"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden px-6 pb-4 bg-white bg-opacity-70"
+  >
+    <ul class="flex flex-col space-y-4 font-serif">
+      <li>
+        <a
+          href="index.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Início"
+          >Início</a
+        >
+      </li>
+      <li>
+        <a
+          href="sobre.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Sobre Nós"
+          >Sobre Nós</a
+        >
+      </li>
+      <li>
+        <a
+          href="servicos.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Serviços"
+          >Serviços</a
+        >
+      </li>
+      <li>
+        <a
+          href="valores.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Projetos"
+          >Nossos Valores</a
+        >
+      </li>
+      <li>
+        <a
+          href="contato.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Contato"
+          >Contato</a
+        >
+      </li>
+      <li class="pt-4 mt-4 border-t border-brand-neutral-beige/10">
+        <a
+          href="contato.html"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ir para a seção Contato"
+          >Contato</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ver Oportunidades de Carreira"
+          >Oportunidades</a
+        >
+      </li>
+      <li>
+        <a
+          href="#"
+          class="text-brand-blue-dark block hover:text-brand-blue-royal transition-colors duration-300"
+          aria-label="Ajustar Configurações de Acessibilidade"
+          >Acessibilidade</a
+        >
+      </li>
+      <li
+        class="pt-4 mt-4 border-t border-brand-neutral-beige/10 flex justify-center space-x-2 header-lang-selector"
+      >
+        <button
+          data-lang="PT"
+          class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal bg-brand-blue-royal text-white selected"
+          aria-label="Mudar idioma para Português"
+        >
+          PT
+        </button>
+        <button
+          data-lang="EN"
+          class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal hover:bg-brand-blue-royal hover:text-white"
+          aria-label="Change language to English"
+        >
+          EN
+        </button>
+        <button
+          data-lang="ES"
+          class="font-bold px-2 py-0.5 rounded-sm border border-brand-blue-royal hover:bg-brand-blue-royal hover:text-white"
+          aria-label="Cambiar idioma a Español"
+        >
+          ES
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div
+    class="absolute bottom-0 left-0 w-full h-[1px] bg-brand-blue-royal opacity-70"
+  ></div>
+</header>
 
     <main>
       <section
@@ -562,19 +617,11 @@
         class="relative h-screen flex items-center justify-center text-white text-center font-sans"
       >
         <div class="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <video
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
+          <img
+            src="./images/hero-bg.png"
+            alt="Fundo da seção principal com uma imagem de um projeto de construção."
             class="absolute inset-0 w-full h-full object-cover"
-            poster="./images/hero-bg-poster.jpg"
-          >
-            <source src="./videos/hero-bg-video.mp4" type="video/mp4" />
-            <source src="./videos/hero-bg-video.webm" type="video/webm" />
-            Seu navegador não suporta vídeos HTML5.
-          </video>
+          />
         </div>
 
         <div
@@ -634,7 +681,92 @@
       </section>
     </main>
 
-    <section id="why-us" class="bg-brand-blue-dark py-16 md:py-24 text-white">
+    <section
+      id="how-it-works"
+      class="relative bg-white py-16 md:py-24 font-sans bg-no-repeat bg-cover bg-center"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2
+          class="text-4xl md:text-5xl font-serif font-bold mb-4 text-[#222E5A] animate-fade-in-up"
+        >
+          COMO FUNCIONA O PROCESSO?
+        </h2>
+        <p class="text-gray-700 mt-4 mb-12 animate-fade-in-up delay-200">
+          OBS: O PRAZO PODE VARIAR DE ACORDO COM O ESCOPO DA REFORMA.
+        </p>
+
+        <div
+          class="relative max-w-2xl mx-auto flex flex-col items-start md:items-center"
+        >
+          <div class="process-item animate-fade-in-up delay-400">
+            <div class="process-icon-container">
+              <i
+                data-lucide="calendar-check"
+                class="w-8 h-8 text-[#00388C]"
+              ></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Agendamento de Reunião</h3>
+              <p class="text-gray-500">1 DIA ÚTIL</p>
+            </div>
+          </div>
+
+          <div class="process-item animate-fade-in-up delay-600">
+            <div class="process-icon-container">
+              <i
+                data-lucide="message-square"
+                class="w-8 h-8 text-[#00388C]"
+              ></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Bate-papo com Arquiteto</h3>
+              <p class="text-gray-500">5 DIAS ÚTEIS</p>
+            </div>
+          </div>
+
+          <div class="process-item animate-fade-in-up delay-800">
+            <div class="process-icon-container">
+              <i data-lucide="monitor" class="w-8 h-8 text-[#00388C]"></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Apresentação do Projeto e Orçamento</h3>
+              <p class="text-gray-500">5 DIAS ÚTEIS</p>
+            </div>
+          </div>
+
+          <div class="process-item animate-fade-in-up delay-1000">
+            <div class="process-icon-container">
+              <i data-lucide="clipboard" class="w-8 h-8 text-[#00388C]"></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Ajustes + Assinatura de Contrato</h3>
+              <p class="text-gray-500">20 DIAS ÚTEIS</p>
+            </div>
+          </div>
+
+          <div class="process-item animate-fade-in-up delay-1200">
+            <div class="process-icon-container">
+              <i data-lucide="hard-hat" class="w-8 h-8 text-[#00388C]"></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Início das Obras</h3>
+              <p class="text-gray-500">60 DIAS ÚTEIS</p>
+            </div>
+          </div>
+
+          <div class="process-item animate-fade-in-up delay-1400">
+            <div class="process-icon-container">
+              <i data-lucide="key" class="w-8 h-8 text-[#00388C]"></i>
+            </div>
+            <div class="process-text-content">
+              <h3 class="text-gray-700">Entrega do Apê dos Sonhos</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="bg-white py-16 md:py-2 text-[#222E5A]">
       <div class="container mx-auto px-6 text-center">
         <h2
           class="text-4xl md:text-5xl font-serif font-bold mb-4 animate-fade-in-up"
@@ -642,15 +774,13 @@
           Por que a Construart?
         </h2>
         <p
-          class="text-lg md:text-xl font-sans mb-12 animate-fade-in-up delay-200"
+          class="text-lg md:text-xl font-sans mb-12 text-gray-700 animate-fade-in-up delay-200"
         >
           Dados concretos e experiência consolidada que provam nosso compromisso
           com a excelência.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-400"
-          >
+          <div class="p-8 rounded-lg animate-fade-in-up delay-400">
             <i
               data-lucide="compass"
               class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"
@@ -663,9 +793,7 @@
               ideias em realidade com acabamento superior.
             </p>
           </div>
-          <div
-            class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-600"
-          >
+          <div class="p-8 rounded-lg animate-fade-in-up delay-600">
             <i
               data-lucide="building"
               class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"
@@ -678,9 +806,7 @@
               e segurança em grande escala.
             </p>
           </div>
-          <div
-            class="bg-white p-8 rounded-lg shadow-lg animate-fade-in-up delay-800"
-          >
+          <div class="p-8 rounded-lg animate-fade-in-up delay-800">
             <i
               data-lucide="hammer"
               class="mx-auto w-12 h-12 text-brand-blue-royal mb-4"
@@ -695,9 +821,38 @@
           </div>
         </div>
       </div>
+
+    <section
+      id="call-to-action"
+      class="relative py-24 md:py-36 text-white text-center font-sans bg-cover bg-center"
+      style="background-image: url('./images/img-call-to-action.jpg')"
+    >
+      <div class="absolute inset-0 bg-brand-blue-dark opacity-70"></div>
+
+      <div class="relative z-10 container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+          Entre em contato agora mesmo!
+        </h2>
+        <p class="text-lg md:text-xl font-sans mb-8">
+          Clique no botão e entre em contato para tirar dúvidas ou solicitar um
+          orçamento.
+        </p>
+        <a
+          href="https://api.whatsapp.com/send?phone=5511994127747"
+          class="inline-block"
+          target="_blank"
+        >
+          <button
+            class="bg-transparent text-white border-2 border-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-brand-blue-dark transition-colors duration-300"
+            aria-label="Fale com um Especialista"
+          >
+            FALAR COM ESPECIALISTA
+          </button>
+        </a>
+      </div>
     </section>
 
-    <footer id="contact" class="bg-white text-brand-blue-dark py-12 font-sans">
+    <footer id="contact" class="bg-white text-brand-blue-dark py-6 font-sans">
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -897,6 +1052,17 @@
             '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>',
           hourglass:
             '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#203C88" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 6h8v2a4 4 0 0 1-2 3.3L12 13l-2 1.7A4 4 0 0 1 8 18v-2"/></svg>',
+          "calendar-check":
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14"/><path d="M16 2v4M8 2v4M3 10h18M10 18l3 3 6-6"/></svg>',
+          "message-square":
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+          monitor:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>',
+          clipboard:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M10 2h4a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2z"/></svg>',
+          "hard-hat":
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4l1.5 3h11.5a2 2 0 0 0 2-2z"/><path d="M8 12v3"/></svg>',
+          key: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7 7l-4 4-2-2 4-4m7 7l-2-2M15 9l-4 4m2-2l2 2m4 4-2 2-4-4 2-2m-4 4-2-2m4 4-2-2"/></svg>',
         };
 
         document.querySelectorAll("i[data-lucide]").forEach((node) => {
@@ -977,30 +1143,6 @@
           });
         });
 
-        // --- LÓGICA PARA MUDAR O CABEÇALHO AO ROLAR A PÁGINA ---
-        const header = document.querySelector("header");
-        const logoImg = document.getElementById("header-logo");
-        const originalLogoSrc = logoImg.getAttribute("src");
-        const darkLogoSrc = logoImg.getAttribute("data-logo-dark");
-        const mobileMenuButtonIcon =
-          document.getElementById("mobile-menu-button");
-
-        window.addEventListener("scroll", () => {
-          const scrollPosition = window.scrollY;
-          // Adiciona a classe 'scrolled-header' quando a posição de rolagem for maior que 50px
-          if (scrollPosition > 50) {
-            header.classList.add("scrolled-header");
-            logoImg.src = darkLogoSrc;
-            mobileMenuButtonIcon.classList.remove("text-brand-neutral-beige");
-            mobileMenuButtonIcon.classList.add("text-brand-blue-dark");
-          } else {
-            // Remove a classe 'scrolled-header' quando a posição de rolagem for menor ou igual a 50px
-            header.classList.remove("scrolled-header");
-            logoImg.src = originalLogoSrc;
-            mobileMenuButtonIcon.classList.remove("text-brand-blue-dark");
-            mobileMenuButtonIcon.classList.add("text-brand-neutral-beige");
-          }
-        });
 
         // === Card animations using IntersectionObserver (staggered) ===
         const cards = document.querySelectorAll(".card-animate");

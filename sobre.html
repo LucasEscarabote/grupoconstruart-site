@@ -60,13 +60,13 @@
             }
             // Try common APIs
             if (typeof lucide.replace === "function") {
-              lucide.replace(); // Removido o stroke para herdar a cor via CSS
+              lucide.replace({ stroke: "#ffffff" });
               console.info("[lucide] initialized with replace()");
               return true;
             }
             if (typeof lucide.createIcons === "function") {
               // some versions use createIcons
-              lucide.createIcons(); // Removido o stroke para herdar a cor via CSS
+              lucide.createIcons({ stroke: "#ffffff" });
               console.info("[lucide] initialized with createIcons()");
               return true;
             }
@@ -110,151 +110,222 @@
     />
 
     <style>
-      body {
-        font-family: var(--font-inter, "Inter", sans-serif);
-        margin: 0;
+            body {
+            font-family: var(--font-inter, "Inter", sans-serif);
+              margin: 0;
+            }
+            /* Adicione o código do WhatsApp aqui */
+            .whatsapp-flutuante {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              z-index: 999;
+            }
+              font-family: var(--font-inter, "Inter", sans-serif);
+              margin: 0;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+              font-family: var(--font-playfair-display, "Playfair Display", serif);
+            }
+            /* Animação para elementos da Hero Section */
+            @keyframes fadeInOut {
+              0% {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            .animate-fade-in-up {
+              animation: fadeInOut 0.8s ease-out forwards;
+            }
+            .delay-200 {
+              animation-delay: 0.2s;
+            }
+            .delay-400 {
+              animation-delay: 0.4s;
+            }
+            /* --- Estilos para o cabeçalho fixo no topo da página --- */
+            .scrolled-header {
+              background-color: white;
+              transition: background-color 0.3s ease;
+              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .scrolled-header .header-top-text,
+            .scrolled-header .header-bottom-nav a {
+              color: #222e5a !important; /* Cor do texto e links da navegação para o modo rolado */
+              transition: color 0.3s ease;
+            }
+
+            .scrolled-header .header-top-text a:hover {
+              color: #203c88 !important; /* Cor dos links no hover */
+            }
+
+            .scrolled-header .header-lang-selector button {
+              color: black !important;
+              background-color: transparent !important;
+              border-color: #203c88 !important;
+            }
+
+            .scrolled-header .header-lang-selector button:hover {
+              background-color: #203c88 !important;
+              color: white !important;
+            }
+
+            .scrolled-header .header-lang-selector button.selected {
+              background-color: #203c88 !important;
+              color: white !important;
+            }
+            @keyframes drawBorder {
+          0% {
+              border-width: 0px;
+              opacity: 0;
+          }
+          100% {
+              border-width: 2px;
+              opacity: 1;
+          }
       }
-      /* Adicione o código do WhatsApp aqui */
-      .whatsapp-flutuante {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 999;
+      .animated-border {
+          animation: drawBorder 1s ease-out forwards 0.5s;
+          animation-fill-mode: forwards;
       }
-      font-family: var(--font-inter, "Inter", sans-serif);
-      margin: 0;
+      .animate-svg-path {
+          stroke-dasharray: 400; /* Um valor alto para esconder toda a linha inicialmente */
+          stroke-dashoffset: 400;
+          animation: drawPath 2s ease-in-out forwards 0.5s;
       }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: var(--font-playfair-display, "Playfair Display", serif);
+
+      @keyframes drawPath {
+          to {
+              stroke-dashoffset: 0; /* Animação para 0 revela a linha */
+          }
       }
-      /* Animação para elementos da Hero Section */
-      @keyframes fadeInOut {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
+      @media (max-width: 767px) {
+          .relative.w-full.max-w-md {
+              margin-top: 50px; /* Altere este valor para ajustar a posição */
+          }
+      }
+      .service-grid-comexport{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        /* altura base de cada “fileira”; quem span 2 fica com o dobro */
+        grid-auto-rows: 170px;
+        gap: 1.5rem;
+        /* layout com os dois blocos verticais (esq e dir) e degraus no meio */
+        grid-template-areas:
+          "item1 .     item3"
+          "item1 item4 item5"
+          "item2 item6 item5";
+        position: relative;
+        margin-top: -120px;   /* mantém a sobreposição na seção de cima */
+        z-index: 10;
+      }
+
+      /* cartas ocupam 100% da célula da grid (para “esticar” nos spans) */
+      .service-grid-comexport > div{
+        height: 100%;
+        box-shadow: 0 4px 15px rgba(0,0,0,.2);
+      }
+
+      /* áreas nomeadas */
+      .item1{ grid-area:item1; } /* Integração Logística (alto – 2 linhas) */
+      .item2{ grid-area:item2; } /* Otimização Fiscal (baixo-esq) */
+      .item3{ grid-area:item3; } /* Simplificação Operacional (topo-dir) */
+      .item4{ grid-area:item4; } /* Tecnologia (meio-coluna) */
+      .item5{ grid-area:item5; } /* Integridade & Compliance (alto – 2 linhas) */
+      .item6{ grid-area:item6; } /* Soluções Financeiras (baixo-meio) */
+
+      /* responsivo: sem sobreposição e em 1 coluna no mobile */
+      @media (max-width: 768px){
+        .service-grid-comexport{
+          grid-template-columns: 1fr;
+          grid-auto-rows: auto;
+          grid-template-areas:
+            "item1"
+            "item3"
+            "item4"
+            "item2"
+            "item6"
+            "item5";
+          margin-top: 0;
         }
-        100% {
+      }
+
+      /* ajuste fino da altura base em telas maiores (opcional) */
+      /* @media (min-width:1024px){ .service-grid-comexport{ grid-auto-rows: 190px; } }
+      @media (min-width:1280px){ .service-grid-comexport{ grid-auto-rows: 210px; } } */
+      .service-grid-construart {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        /* gap: 16px; */
+        align-items: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      @media (max-width: 768px) {
+        .service-grid-construart {
+          grid-template-columns: 1fr;
+          margin-top: 0;
+        }
+      }
+      /* Card entrance animation */
+      @keyframes cardFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      .animate-fade-in-up {
-        animation: fadeInOut 0.8s ease-out forwards;
+      .card-animate {
+        opacity: 0;
+        transform: translateY(28px);
+        will-change: opacity, transform;
+        transition: opacity 480ms cubic-bezier(.2,.9,.2,1), transform 480ms cubic-bezier(.2,.9,.2,1);
       }
-      .delay-200 {
-        animation-delay: 0.2s;
-      }
-      .delay-400 {
-        animation-delay: 0.4s;
-      }
-      /* --- Estilos para o cabeçalho fixo no topo da página --- */
-      .scrolled-header {
-        background-color: white;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      .card-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+        /* small extra pop using keyframes for a crisper effect */
+        animation: cardFadeUp 520ms cubic-bezier(.2,.9,.2,1) both;
       }
 
-      .scrolled-header .header-top-text,
-      .scrolled-header .header-bottom-nav a {
-        color: #222e5a !important; /* Cor do texto e links da navegação para o modo rolado */
-        transition: color 0.3s ease;
-      }
-
-      .scrolled-header .header-top-text a:hover {
-        color: #203c88 !important; /* Cor dos links no hover */
-      }
-
-      .scrolled-header .header-lang-selector button {
-        color: black !important;
-        background-color: transparent !important;
-        border-color: #203c88 !important;
-      }
-
-      .scrolled-header .header-lang-selector button:hover {
-        background-color: #203c88 !important;
-        color: white !important;
-      }
-
-      .scrolled-header .header-lang-selector button.selected {
-        background-color: #203c88 !important;
-        color: white !important;
-      }
-      @keyframes drawBorder {
-        0% {
-          border-width: 0px;
-          opacity: 0;
-        }
-        100% {
-          border-width: 2px;
-          opacity: 1;
-        }
-      }
-      .animated-border {
-        animation: drawBorder 1s ease-out forwards 0.5s;
-        animation-fill-mode: forwards;
-      }
-      .animate-svg-path {
-        stroke-dasharray: 400; /* Um valor alto para esconder toda a linha inicialmente */
-        stroke-dashoffset: 400;
-        animation: drawPath 2s ease-in-out forwards 0.5s;
-      }
-      @keyframes drawPath {
-        to {
-          stroke-dashoffset: 0; /* Animação para 0 revela a linha */
-        }
-      }
-      @media (max-width: 767px) {
-        .relative.w-full.max-w-md {
-          margin-top: 50px; /* Altere este valor para ajustar a posição */
-        }
-      }
-      .service-grid-comexport {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        grid-auto-rows: 170px;
-        gap: 1.5rem;
-        grid-template-areas: "item1 . item3" "item1 item4 item5" "item2 item6 item5";
-        position: relative;
-        margin-top: -120px;
-        z-index: 10;
-      }
-      .service-grid-comexport > div {
+      .card-inner {
         height: 100%;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-      .item1 {
-        grid-area: item1;
-      }
-      .item2 {
-        grid-area: item2;
-      }
-      .item3 {
-        grid-area: item3;
-      }
-      .item4 {
-        grid-area: item4;
-      }
-      .item5 {
-        grid-area: item5;
-      }
-      .item6 {
-        grid-area: item6;
-      }
-      @media (max-width: 768px) {
-        .service-grid-comexport {
-          grid-template-columns: 1fr;
-          grid-auto-rows: auto;
-          grid-template-areas: "item1" "item3" "item4" "item2" "item6" "item5";
-          margin-top: 0;
-        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.5rem;
       }
     </style>
     <style>
+      /* ensure lucide svgs inherit white color */
+      i[data-lucide] svg,
+      i[data-lucide] {
+        color: #ffffff;
+        stroke: #ffffff;
+      }
+    </style>
+    <style>
+      /* ensure lucide svgs inherit white color */
+      i[data-lucide] svg,
+      i[data-lucide] {
+        color: #ffffff;
+        stroke: #ffffff;
+      }
+
       @keyframes drawBorder {
         0% {
           border-width: 0px;
@@ -276,28 +347,8 @@
         border-color: #222e5a; /* Cor da borda com a sua cor de marca */
       }
     </style>
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WGXL7WJ2");
-    </script>
   </head>
   <body class="bg-black">
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WGXL7WJ2"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
     <header
       class="fixed top-0 left-0 w-full z-20 text-brand-neutral-beige transition-colors duration-300"
     >
@@ -307,7 +358,7 @@
         <ul class="flex space-x-4">
           <li>
             <a
-              href="contato.html"
+              href="#contact"
               class="hover:text-white transition-colors duration-300"
               aria-label="Ir para a seção Contato"
               >Contato</a
@@ -557,115 +608,34 @@
     </header>
 
     <main>
-      <section
-        id="sobre-hero"
-        class="relative h-screen flex items-center justify-center bg-cover bg-center text-white"
-        style="background-image: url('./images/hero-sobre.jpg')"
-      >
-        <div
-          class="absolute inset-0 bg-brand-blue-royal bg-opacity-70"
-          aria-hidden="true"
-        ></div>
-        <div class="relative z-10 text-center px-6">
-          <h1
-            class="text-4xl md:text-6xl font-serif font-bold animate-fade-in-up"
-          >
-            Nossa História
-          </h1>
-          <p
-            class="mt-4 text-lg md:text-xl font-sans animate-fade-in-up delay-200"
-          >
-            Uma jornada de dedicação, excelência e inovação no mundo da
-            construção e arquitetura.
-          </p>
-        </div>
-      </section>
-
-      <section id="sobre-nos" class="bg-brand-neutral-beige py-16">
+      <section id="about" class="py-20 md:py-32 bg-white text-brand-blue-dark">
         <div class="container mx-auto px-6">
-          <div class="flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 md:pr-8 mb-6 md:mb-0">
-              <img
-                src="./images/equipe.jpg"
-                alt="Nossa Equipe"
-                class="rounded-lg shadow-lg w-full h-auto"
-              />
-            </div>
+          <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-              <h2
-                class="text-3xl md:text-4xl font-serif font-bold text-brand-blue-dark"
-              >
-                Sobre a Construart
+              <div class="relative w-full h-auto rounded-lg">
+                <img
+                  src="./images/about-us.png"
+                  alt="A nossa equipa a trabalhar num projeto"
+                  class="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+            <div class="md:w-1/2 text-center md:text-left">
+              <h2 class="font text-3xl md:text-5xl font-bold mb-4">
+                A NOSSA PAIXÃO POR CONSTRUIR
               </h2>
-              <p class="mt-4 text-brand-blue-dark/80">
-                A Construart nasceu da visão de um grupo de engenheiros e
-                arquitetos apaixonados por transformar ideias em realidade.
-                Desde nossa fundação, nossa missão tem sido entregar projetos de
-                alta qualidade, superando as expectativas de nossos clientes.
+              <p class="font-sans text-lg mb-4 leading-relaxed">
+                No Grupo Construart, combinamos a tradição de artesãos
+                experientes com a tecnologia e a inovação para criar espaços que
+                resistem ao tempo. Desde a nossa fundação, o nosso compromisso é
+                com a qualidade inquestionável e a satisfação do cliente,
+                transformando cada projeto num legado de excelência.
               </p>
-              <p class="mt-4 text-brand-blue-dark/80">
-                Acreditamos que cada obra é uma oportunidade de construir um
-                legado. Com mais de 15.000m² em projetos executados e uma gestão
-                de obras transparente, somos sinônimo de confiança e excelência.
-                Nossa equipe é composta por profissionais qualificados, prontos
-                para enfrentar os desafios mais complexos.
-              </p>
-              <p class="mt-4 text-brand-blue-dark/80">
-                Nossos valores - integridade, inovação e compromisso - guiam
-                cada etapa de nosso trabalho. Seja na construção de uma nova
-                residência, na reforma de um espaço comercial ou na gestão de um
-                grande projeto, estamos ao seu lado para garantir que sua visão
-                seja concretizada com perfeição.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="missao-visao-valores"
-        class="bg-brand-blue-dark py-16 text-white"
-      >
-        <div class="container mx-auto px-6">
-          <h2
-            class="text-4xl md:text-5xl font-serif font-bold text-center mb-12"
-          >
-            Nossos Pilares
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center p-6 bg-white bg-opacity-10 rounded-lg">
-              <i
-                data-lucide="target"
-                class="mx-auto w-12 h-12 mb-4 text-brand-neutral-beige"
-              ></i>
-              <h3 class="text-2xl font-serif font-bold mb-2">Missão</h3>
-              <p class="text-sm">
-                Entregar projetos de construção e arquitetura com excelência e
-                inovação, superando as expectativas dos nossos clientes e
-                criando espaços que inspiram e duram.
-              </p>
-            </div>
-            <div class="text-center p-6 bg-white bg-opacity-10 rounded-lg">
-              <i
-                data-lucide="eye"
-                class="mx-auto w-12 h-12 mb-4 text-brand-neutral-beige"
-              ></i>
-              <h3 class="text-2xl font-serif font-bold mb-2">Visão</h3>
-              <p class="text-sm">
-                Ser a empresa de construção e arquitetura de referência em
-                projetos de alto padrão, reconhecida pela qualidade,
-                confiabilidade e compromisso com o futuro.
-              </p>
-            </div>
-            <div class="text-center p-6 bg-white bg-opacity-10 rounded-lg">
-              <i
-                data-lucide="handshake"
-                class="mx-auto w-12 h-12 mb-4 text-brand-neutral-beige"
-              ></i>
-              <h3 class="text-2xl font-serif font-bold mb-2">Valores</h3>
-              <p class="text-sm">
-                Integridade, inovação, compromisso, colaboração e respeito ao
-                cliente. Estes são os alicerces do nosso trabalho.
+              <p class="font-sans text-lg leading-relaxed">
+                Acreditamos que a construção é mais do que erguer paredes; é dar
+                forma a sonhos. A nossa equipa dedica-se a cada detalhe,
+                garantindo que a sua visão se torne uma realidade sólida e
+                sustentável.
               </p>
             </div>
           </div>
@@ -828,7 +798,7 @@
         function tryReplace() {
           try {
             if (window.lucide && typeof lucide.replace === "function") {
-              lucide.replace(); // Removido o stroke para herdar a cor via CSS
+              lucide.replace({ stroke: "#ffffff", width: 24, height: 24 });
               console.info("[lucide] replace() called");
               return true;
             }
@@ -862,11 +832,17 @@
 
         // 3) fallback: inserir SVGs inline para os ícones usados
         const svgs = {
-          target:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#E5DDD3" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-          eye: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#E5DDD3" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
-          handshake:
-            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#E5DDD3" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11l-3 3-5 5M16 8l3-3 4-4"/><path d="M18 10l-4-4"/><path d="M12 11l2 2"/><path d="M18 16a2 2 0 0 1-2 2h-2"/><path d="M22 22l-2-2"/><path d="M14 20l-2-2"/><path d="M10 16l-2-2"/></svg>',
+          home: '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5L12 4l9 7.5"/><path d="M7 21v-7h10v7"/></svg>',
+          building:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h.01M8 11h.01M8 15h.01M12 7h.01M12 11h.01M12 15h.01M16 7h.01M16 11h.01M16 15h.01"/></svg>',
+          hammer:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9 9-4 1 1-4 9-9"/><path d="M7 13L3 21"/></svg>',
+          compass:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-4 2-2 4 4-2z"/></svg>',
+          "file-text":
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l4-4h8a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M8 6h8M8 10h8M8 14h5"/></svg>',
+          hourglass:
+            '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M8 6h8v2a4 4 0 0 1-2 3.3L12 13l-2 1.7A4 4 0 0 1 8 18v-2"/></svg>',
         };
 
         document.querySelectorAll("i[data-lucide]").forEach((node) => {
@@ -887,6 +863,120 @@
 
         console.warn("[lucide] fallback applied — inline SVGs inserted.");
       })();
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+
+        if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
+          mobileMenuButton.addEventListener("click", function () {
+            const isMenuHidden = mobileMenu.classList.toggle("hidden");
+            // Altera o ícone do menu (hambúrguer para X e vice-versa)
+            if (isMenuHidden) {
+              mobileMenuIcon.setAttribute("d", "M4 6h16M4 12h16m-7 6h7"); // Ícone de hambúrguer
+            } else {
+              mobileMenuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12"); // Ícone de X
+            }
+          });
+
+          // Fecha o menu mobile ao clicar em um link
+          const mobileLinks = mobileMenu.querySelectorAll("a");
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenu.classList.add("hidden");
+              mobileMenuIcon.setAttribute("d", "M4 6h16M4 12h16m-7 6h7"); // Volta para o ícone de hambúrguer
+            });
+          });
+        }
+
+        // Atualiza o ano no rodapé
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Lógica para alternar o idioma selecionado no cabeçalho
+        const langButtons = document.querySelectorAll(
+          ".header-lang-selector button"
+        );
+        langButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            langButtons.forEach((btn) => {
+              btn.classList.remove(
+                "selected",
+                "bg-brand-blue-royal",
+                "text-black"
+              );
+              btn.classList.add(
+                "hover:bg-brand-blue-royal",
+                "hover:text-black"
+              );
+            });
+            this.classList.add("selected", "bg-brand-blue-royal", "text-black");
+            this.classList.remove(
+              "hover:bg-brand-blue-royal",
+              "hover:text-black"
+            );
+          });
+        });
+
+        // --- LÓGICA PARA MUDAR O CABEÇALHO AO ROLAR A PÁGINA ---
+        const header = document.querySelector("header");
+        const logoImg = document.getElementById("header-logo");
+        const originalLogoSrc = logoImg.getAttribute("src");
+        const darkLogoSrc = logoImg.getAttribute("data-logo-dark");
+        const mobileMenuButtonIcon =
+          document.getElementById("mobile-menu-button");
+
+        window.addEventListener("scroll", () => {
+          const scrollPosition = window.scrollY;
+          // Adiciona a classe 'scrolled-header' quando a posição de rolagem for maior que 50px
+          if (scrollPosition > 50) {
+            header.classList.add("scrolled-header");
+            logoImg.src = darkLogoSrc;
+            mobileMenuButtonIcon.classList.remove("text-brand-neutral-beige");
+            mobileMenuButtonIcon.classList.add("text-brand-blue-dark");
+          } else {
+            // Remove a classe 'scrolled-header' quando a posição de rolagem for menor ou igual a 50px
+            header.classList.remove("scrolled-header");
+            logoImg.src = originalLogoSrc;
+            mobileMenuButtonIcon.classList.remove("text-brand-blue-dark");
+            mobileMenuButtonIcon.classList.add("text-brand-neutral-beige");
+          }
+        });
+
+        // === Card animations using IntersectionObserver (staggered) ===
+        const cards = document.querySelectorAll(".card-animate");
+        if (cards.length) {
+          if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+              (entries, obs) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    // find index for simple stagger
+                    const idx = Array.from(cards).indexOf(entry.target);
+                    setTimeout(
+                      () => entry.target.classList.add("visible"),
+                      idx * 90
+                    );
+                    obs.unobserve(entry.target);
+                  }
+                });
+              },
+              { threshold: 0.18 }
+            );
+            cards.forEach((card) => observer.observe(card));
+          } else {
+            // fallback: reveal all immediately
+            cards.forEach((c, i) =>
+              setTimeout(() => c.classList.add("visible"), i * 90)
+            );
+          }
+        }
+      });
     </script>
     <a
       href="https://api.whatsapp.com/send?phone=5511994127747"
