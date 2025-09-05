@@ -166,7 +166,7 @@
       }
       /* --- Estilos para o cabeçalho fixo no topo da página --- */
       .scrolled-header {
-        background-color: white;
+        background-color: #E9DFD5;
         transition: background-color 0.3s ease;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
@@ -373,7 +373,7 @@
       }
     </style>
   </head>
-  <body class="bg-black">
+  <body class="bg-[#E9DFD5]">
     <noscript
       ><iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WGXL7WJ2"
@@ -383,7 +383,7 @@
       ></iframe
     ></noscript>
     <header
-      class="fixed top-0 left-0 w-full z-20 text-brand-blue-dark transition-colors duration-300 bg-white shadow-md"
+      class="fixed top-0 left-0 w-full z-20 text-brand-blue-dark transition-colors duration-300 bg-[#E9DFD5] shadow-md"
     >
       <div
         class="container mx-auto px-6 py-2 flex justify-end items-center text-xs text-brand-blue-dark header-top-text"
@@ -539,7 +539,7 @@
 
       <div
         id="mobile-menu"
-        class="hidden md:hidden px-6 pb-4 bg-white bg-opacity-70"
+        class="hidden md:hidden px-6 pb-4 bg-[#E9DFD5] bg-opacity-70"
       >
         <ul class="flex flex-col space-y-4 font-serif">
           <li>
@@ -640,7 +640,10 @@
     </header>
 
     <main>
-      <section id="about" class="py-20 md:py-32 bg-white text-brand-blue-dark">
+      <section
+        id="about"
+        class="py-20 md:py-32 bg-[#E9DFD5] text-brand-blue-dark"
+      >
         <div class="container mx-auto px-6">
           <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
@@ -675,7 +678,10 @@
       </section>
     </main>
 
-    <footer id="contact" class="bg-white text-brand-blue-dark py-12 font-sans">
+    <footer
+      id="contact"
+      class="bg-[#E9DFD5] text-brand-blue-dark py-12 font-sans"
+    >
       <div class="container mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
@@ -683,8 +689,8 @@
               <img
                 src="./images/logo-blue.png"
                 alt="Logo Construart"
-                width="150"
-                height="50"
+                width="75"
+                height="25"
               />
             </a>
             <p class="mt-4 text-sm">
@@ -774,9 +780,10 @@
             <ul class="flex space-x-4">
               <li>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/share/15Dh9pr4Pbn/?mibextid=wwXIfr"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
                   aria-label="Visitar nossa página no Facebook"
+                  target="_blank"
                 >
                   <img
                     src="./images/icon-facebook.svg"
@@ -787,9 +794,10 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/grupo_construart/"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
                   aria-label="Visitar nossa página no Instagram"
+                  target="_blank"
                 >
                   <img
                     src="./images/icon-instagram.svg"
@@ -800,9 +808,10 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/grupo-construart-b8490932a/"
                   class="hover:text-brand-blue-dark transition-colors duration-300"
                   aria-label="Visitar nossa página no LinkedIn"
+                  target="_blank"
                 >
                   <img
                     src="./images/icon-linkedin.svg"
